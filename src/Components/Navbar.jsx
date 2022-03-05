@@ -13,6 +13,7 @@ export default function Navbar() {
       {token ? (
         <ul>
           <Link to="/"> Accueil </Link>
+          <Link to="/Maliste">Ma Liste</Link>
           <Link to="/" onClick={deconnexion}>
             Deconnexion
           </Link>

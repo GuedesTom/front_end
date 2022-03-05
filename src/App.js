@@ -7,6 +7,7 @@ import Connexion from "./Components/Connexion";
 import Inscription from "./Components/Inscription";
 import Navbar from "./Components/Navbar";
 import Content_id from "./Components/Content_id";
+import Maliste from "./Components/Maliste";
 
 function App() {
   const [token, settoken] = useState(localStorage.getItem("token"));
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Accueil />} />
           <Route path="/Inscription" element={<Inscription />} />
           <Route path="/Connexion" element={<Connexion />} />
+          <Route path="/Maliste" element={<Maliste />} />
           <Route path="/Contents/:id" element={<Content_id />} />
         </Routes>
       </Provider>
