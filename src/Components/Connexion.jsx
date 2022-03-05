@@ -13,7 +13,6 @@ export default function Connexion() {
     if (username === "" || password === "") {
       alert("Rempli!");
     } else {
-      alert("Bien ouej!");
       axios
         .post("/api/user/login", user)
         .then((res) => {

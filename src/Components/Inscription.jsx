@@ -15,7 +15,6 @@ export default function Inscription() {
     if (username === "" || email === "" || password === "") {
       alert("Manque des champs!");
     } else {
-      alert("Bien ouej!");
       axios
         .post("/api/user/signup", user)
         .then((res) => {
