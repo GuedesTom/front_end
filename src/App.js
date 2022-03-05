@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { SagagaContext } from "./SagagaContext.jsx";
+import { useState } from "react";
+import Accueil from "./Components/Accueil";
+import Connexion from "./Components/Connexion";
+import Inscription from "./Components/Inscription";
+import Navbar from "./Components/Navbar";
 
 function App() {
+  const [token, settoken] = useState(localStorage.getItem("token"));
+  let Provider = SagagaContext.Provider;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Provider value={{ token, settoken }}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Accueil />} />
+          <Route path="/Inscription" element={<Inscription />} />
+          <Route path="/Connexion" element={<Connexion />} />
+        </Routes>
+      </Provider>
+    </Router>
   );
 }
 
