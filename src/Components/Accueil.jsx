@@ -38,7 +38,7 @@ export default function Accueil() {
           Authorization: "Bearer " + token,
         },
       })
-      .then((res) => setlistContentUser(res.data))
+      .then((res) => setlistContentUser(res.data.content))
       .catch((err) => console.log(err.response));
     listContentUser.map((content) => {
       return axios

@@ -1,9 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { SagagaContext } from "../SagagaContext";
+import axios from "axios";
 
 export default function Navbar() {
   let { token, settoken } = useContext(SagagaContext);
+  const [creator, setcreator] = useState();
+
+  axios
+    .get("/api/user", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((res) => setcreator(res.data.content_creator))
+    .catch((err) => console.log(err.response));
+
   const deconnexion = (event) => {
     settoken("");
     localStorage.removeItem("token");
@@ -13,7 +25,8 @@ export default function Navbar() {
       {token ? (
         <ul>
           <Link to="/"> Accueil </Link>
-          <Link to="/Maliste">Ma Liste</Link>
+          {creator ? <Link to="/Create"> Ajouter Contenue </Link> : null}
+          <Link to="/Maliste"> Ma Liste </Link>
           <Link to="/" onClick={deconnexion}>
             Deconnexion
           </Link>
