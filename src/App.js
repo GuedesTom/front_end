@@ -7,6 +7,7 @@ import Connexion from "./Components/Connexion";
 import Inscription from "./Components/Inscription";
 import Navbar from "./Components/Navbar";
 import Content_id from "./Components/Content_id";
+import Upload from "./Components/Upload";
 import Maliste from "./Components/Maliste";
 import AjouterContent from "./Components/AjouterContent";
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/Inscription" element={<Inscription />} />
           <Route path="/Connexion" element={<Connexion />} />
           <Route path="/Maliste" element={<Maliste />} />
+          <Route path="/Upload" element={<Upload />} />
           <Route path="/Create" element={<AjouterContent />} />
           <Route path="/Contents/:id" element={<Content_id />} />
         </Routes>

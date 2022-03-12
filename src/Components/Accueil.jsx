@@ -12,7 +12,21 @@ export default function Accueil() {
   const [listContentUserAAfficher, setlistContentUserAAfficher] = useState([]);
   let navigate = useNavigate();
 
+  const video = (id) => {
+    axios
+      .get(`/api/file/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err.response));
+  };
+
   const song = (id) => {
+    console.log("TEST");
     axios
       .patch(
         `/api/user/${id}`,
@@ -60,7 +74,6 @@ export default function Accueil() {
   return (
     <div id="container">
       {listContentUserAAfficher.map((content) => {
-        console.log(content);
         return (
           <div key={content}>
             <li id="title">
@@ -81,7 +94,6 @@ export default function Accueil() {
                 <ReactPlayer
                   width="100%"
                   height="100%"
-                  url={content.url}
                   controls
                   muted
                   config={{
@@ -89,7 +101,9 @@ export default function Accueil() {
                       playerVars: { showinfo: 1 },
                     },
                   }}
-                />
+                >
+                  {}
+                </ReactPlayer>
               </ul>
               <p>{content.description} </p>
             </li>

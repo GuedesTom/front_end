@@ -14,25 +14,22 @@ export default function Content_id() {
           Authorization: "Bearer " + token,
         },
       })
-      .then((res) => setlistContentUser(res.data))
+      .then((res) => setlistContentUser(res.data.content))
       .catch((err) => console.log(err.response));
   }, []);
 
-  console.log(listContentUser);
-
   return (
     <div>
+      TEST
       {listContentUser.map((content) => {
-        console.log("TEST" + content);
         axios
           .get(`/api/content/${content}`)
           .then((res) => {
-              
-            console.log(content);
+            console.log(res.data);
             return (
               <div id="card" key={res.data._id}>
-                {console.log(res.data.description)}
                 <li id="title">
+                  TEST
                   {res.data.name}
                   <ul>
                     <ReactPlayer

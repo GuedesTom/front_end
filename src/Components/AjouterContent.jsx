@@ -6,16 +6,27 @@ import axios from "axios";
 
 export default function Inscription() {
   let { token } = useContext(SagagaContext);
-  const [nom, setnom] = useState("");
+  const [name, setname] = useState("");
   const [description, setdescription] = useState("");
   const [genre, setgenre] = useState("");
   const [pegi, setpegi] = useState("");
   const [url, seturl] = useState("");
+  const [user_creator, setuser_creator] = useState("");
   let navigate = useNavigate();
+  axios
+    .get("/api/user", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((res) => {
+      setuser_creator(res.data._id);
+    })
+    .catch((err) => console.log(err.response));
   const submitHandler = (event) => {
-    const content = { nom, description, genre, pegi, url };
+    const content = { name, description, genre, pegi, url, user_creator };
     if (
-      nom === "" ||
+      name === "" ||
       description === "" ||
       genre === "" ||
       pegi === "" ||
@@ -42,8 +53,8 @@ export default function Inscription() {
       <input
         type="text"
         placeholder="nom"
-        value={nom}
-        onChange={(event) => setnom(event.target.value)}
+        value={name}
+        onChange={(event) => setname(event.target.value)}
       />
       <br />
       <br />
