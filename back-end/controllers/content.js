@@ -59,3 +59,25 @@ exports.supp = async (req, res) => {
     res.status(400).json(err);
   }
 };
+
+exports.upload = async (req, res, next) => {
+  const file = req.file;
+  if (!file) {
+    const error = new Error("Please upload a file");
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+  res.send(file);
+};
+
+exports.download = async (req, res) => {
+  db.collection("mycollection")
+    .find()
+    .toArray((err, result) => {
+      const imgArray = result.map((element) => element._id);
+      console.log(imgArray);
+
+      if (err) return console.log(err);
+      res.send(imgArray);
+    });
+};

@@ -3,6 +3,12 @@ import axios from "axios";
 import { SagagaContext } from "../SagagaContext";
 
 export default function Upload() {
+
+
+// https://javascript.tutorialink.com/multer-npm-typeerror-cannot-read-property-path-of-undefined/
+
+
+
   let { token } = useContext(SagagaContext);
   const [selectedFile, setSelectedFile] = useState();
   const [isSelected, setIsSelected] = useState(false);
@@ -19,7 +25,7 @@ export default function Upload() {
     console.log(selectedFile);
 
     axios
-      .post("/api/file", formData, {
+      .post("/api/content/upload", formData, {
         headers: {
           Authorization: "Bearer " + token,
         },
