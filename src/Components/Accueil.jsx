@@ -12,7 +12,7 @@ export default function Accueil() {
   const [listContentUserAAfficher, setlistContentUserAAfficher] = useState([]);
   let navigate = useNavigate();
 
-  const video = (id) => {
+  const video = (id, name) => {
     axios
       .get(`/api/file/${id}`, {
         headers: {
@@ -91,9 +91,13 @@ export default function Accueil() {
             <li id="title">
               {content.name}
               <ul>
-                <ReactPlayer
+                <video
                   width="100%"
                   height="100%"
+                  src={`data:video/mp4;base64,${video(
+                    content.url,
+                    content.name
+                  )}`}
                   controls
                   muted
                   config={{
@@ -101,9 +105,7 @@ export default function Accueil() {
                       playerVars: { showinfo: 1 },
                     },
                   }}
-                >
-                  {}
-                </ReactPlayer>
+                />
               </ul>
               <p>{content.description} </p>
             </li>

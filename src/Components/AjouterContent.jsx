@@ -10,9 +10,16 @@ export default function Inscription() {
   const [description, setdescription] = useState("");
   const [genre, setgenre] = useState("");
   const [pegi, setpegi] = useState("");
-  const [url, seturl] = useState("");
   const [user_creator, setuser_creator] = useState("");
+  const [selectedFile, setSelectedFile] = useState();
+  const [isSelected, setIsSelected] = useState(false);
   let navigate = useNavigate();
+
+  const changeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+    setIsSelected(true);
+  };
+
   axios
     .get("/api/user", {
       headers: {
@@ -24,14 +31,8 @@ export default function Inscription() {
     })
     .catch((err) => console.log(err.response));
   const submitHandler = (event) => {
-    const content = { name, description, genre, pegi, url, user_creator };
-    if (
-      name === "" ||
-      description === "" ||
-      genre === "" ||
-      pegi === "" ||
-      url === ""
-    ) {
+    const content = { name, description, genre, pegi, user_creator };
+    if (name === "" || description === "" || genre === "" || pegi === "") {
       alert("Manque des champs!");
     } else {
       axios
@@ -46,6 +47,24 @@ export default function Inscription() {
         })
         .catch((err) => console.log(err.response));
     }
+
+    const formData = new FormData();
+
+    formData.append("File", selectedFile);
+    console.log(selectedFile);
+
+    axios
+      .post("/api/file", formData, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((result) => {
+        console.log("Success:", result);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -82,14 +101,20 @@ export default function Inscription() {
       />
       <br />
       <br />
-      <input
-        type="url"
-        placeholder="url"
-        value={url}
-        onChange={(event) => seturl(event.target.value)}
-      />
-      <br />
-      <br />
+      <input type="file" name="file" onChange={changeHandler} />
+      {isSelected ? (
+        <div>
+          <p>Filename: {selectedFile.name}</p>
+          <p>Filetype: {selectedFile.type}</p>
+          <p>Size in bytes: {selectedFile.size}</p>
+          <p>
+            lastModifiedDate:{" "}
+            {selectedFile.lastModifiedDate.toLocaleDateString()}
+          </p>
+        </div>
+      ) : (
+        <p>Select a file to show details</p>
+      )}
       <button onClick={submitHandler}> Ajouter </button>
     </div>
   );
