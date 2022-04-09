@@ -1,6 +1,7 @@
 const express = require("express");
 const trackRoute = express.Router();
 const multer = require("multer");
+require("dotenv").config();
 
 const mongodb = require("mongodb");
 const MongoClient = require("mongodb").MongoClient;
@@ -15,19 +16,16 @@ const { Readable } = require("stream");
  * Connect Mongo Driver to MongoDB.
  */
 let db;
-MongoClient.connect(
-  "mongodb+srv://admin:admin@cluster0.lk2nh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  (err, database) => {
-    if (err) {
-      console.log(
-        "MongoDB Connection Error. Please make sure that MongoDB is running."
-      );
-      process.exit(1);
-    }
-    console.log("Connected to MongoDB.");
-    db = database;
+MongoClient.connect(process.env.MONGO_URI, (err, database) => {
+  if (err) {
+    console.log(
+      "MongoDB Connection Error. Please make sure that MongoDB is running."
+    );
+    process.exit(1);
   }
-);
+  console.log("Connected to MongoDB.");
+  db = database;
+});
 
 exports.download = async (req, res) => {
   try {
@@ -72,7 +70,6 @@ exports.upload = async (req, res) => {
   });
   upload.single("track")(req, res, (err) => {
     if (err) {
-      console.log(err);
       return res
         .status(400)
         .json({ message: "Upload Request Validation Failed" + err });
@@ -84,9 +81,8 @@ exports.upload = async (req, res) => {
 
     // Covert buffer to Readable Stream
     const readableTrackStream = new Readable();
-    readableTrackStream.push(req.file.buffer);
+    readableTrackStream.push(req.body.buffer);
     readableTrackStream.push(null);
-
 
     let bucket = new mongodb.GridFSBucket(db, {
       bucketName: "tracks",
@@ -97,7 +93,6 @@ exports.upload = async (req, res) => {
     readableTrackStream.pipe(uploadStream);
 
     uploadStream.on("error", () => {
-      console.log(uploadStream)
       return res.status(500).json({ message: "Error uploading file" });
     });
 
