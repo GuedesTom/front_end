@@ -25,7 +25,7 @@ export default function Upload() {
     console.log(selectedFile);
 
     axios
-      .post("/api/content/upload", formData, {
+      .post("/api/upload", formData, {
         headers: {
           Authorization: "Bearer " + token,
         },
