@@ -93,7 +93,8 @@ exports.upload = async (req, res) => {
     readableTrackStream.pipe(uploadStream);
 
     uploadStream.on("error", () => {
-      return res.status(500).json({ message: "Error uploading file" });
+      console.log(res)
+      return res.status(500).json({ message: "Error uploading file "});
     });
 
     uploadStream.on("finish", () => {
