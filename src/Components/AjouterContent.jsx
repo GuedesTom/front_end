@@ -31,7 +31,9 @@ export default function Inscription() {
     })
     .catch((err) => console.log(err.response));
   const submitHandler = (event) => {
-    const content = { name, description, genre, pegi, user_creator };
+    const filename = selectedFile.name
+    const content = { name, filename, description, genre, pegi, user_creator };
+    console.log(content);
     if (name === "" || description === "" || genre === "" || pegi === "") {
       alert("Manque des champs!");
     } else {
@@ -50,7 +52,7 @@ export default function Inscription() {
 
     const formData = new FormData();
 
-    formData.append("File", selectedFile);
+    formData.append("file", selectedFile);
     console.log(selectedFile);
 
     axios
@@ -101,7 +103,7 @@ export default function Inscription() {
       />
       <br />
       <br />
-      <input type="file" name="file" onChange={changeHandler} />
+      <input type="file" name="video" onChange={changeHandler} />
       {isSelected ? (
         <div>
           <p>Filename: {selectedFile.name}</p>
