@@ -1,58 +1,61 @@
-/* eslint-disable array-callback-return */
 import React, { useState, useEffect, useContext } from "react";
 import { SagagaContext } from "../SagagaContext";
 import axios from "axios";
 
 export default function Content_id() {
   let { token } = useContext(SagagaContext);
-  const [listContentUser, setlistContentUser] = useState([]);
-  const [listContent, setlistContent] = useState({});
+  // liste qui contient seulement les id des élements
+  const [listIDContentUser, setlistIDContentUser] = useState([]);
+  // liste qui contient la contenue complet de tous les élements
+  const [listContent, setlistContent] = useState([]);
 
+  // récupere la liste d'ID du contenue de chaque user
   useEffect(() => {
     function getUserContent() {
+      const config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
       axios
-        .get("/api/user", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-        .then((res) => setlistContentUser(res.data.content))
+        .get("/api/user", config)
+        .then((res) => setlistIDContentUser(res.data.content))
         .catch((err) => console.log(err.response));
     }
     getUserContent();
-  }, [listContentUser]);
+  }, [token]);
 
-
-  const getContent = (content) => {
-    console.log(content);
-    axios
-      .get(`/api/content/${content}`)
-      .then((res) => {
-        console.log(res.data);
-        setlistContent(res.data);
-      })
-      .catch((err) => console.log(err.response));
-  };
+  // une fois la liste d'id récuperer, ce useEffect ce déclanche pour récuperer chaque contenue avec son id
+  useEffect(() => {
+    listIDContentUser.forEach((idContent) => {
+      axios
+        .get(`/api/content/${idContent}`)
+        .then((res) => {
+          // on concatène le résultat qu'on viens d'obtenir avec les autres résultat précedement récuperer
+          setlistContent((listContent) => [res.data, ...listContent]);
+        })
+        .catch((err) => console.log(err.response));
+    });
+  }, [listIDContentUser]);
 
   return (
     <div>
-      {listContentUser.map((content) => {
+      {listContent.map((content) => {
         console.log(content);
-        getContent(content);
-        console.log(listContent);
-        <div id="card" key={listContent._id}>
-          <li id="title">
-            TEST 123
-            {listContent.name}
-            <ul>
-              <audio
-                src={`/api/file/download/${listContent.filename}`}
-                controls
-              />
-            </ul>
-            <p>{listContent.description} </p>
-          </li>
-        </div>;
+        return (
+          <div id="card" key={content._id}>
+            <li id="title">
+              {content.name}
+              <ul>
+                <audio
+                  src={`/api/file/download/${content.filename}`}
+                  controls
+                />
+              </ul>
+              <p>{content.description} </p>
+            </li>
+          </div>
+        );
       })}
     </div>
   );

@@ -7,6 +7,7 @@ import { SagagaContext } from "../SagagaContext";
 export default function Accueil() {
   let { token } = useContext(SagagaContext);
   const [listAAfficher, setlistAAfficher] = useState([]);
+  const [listIDContentUser, setlistIDContentUser] = useState([]);
   let navigate = useNavigate();
 
   const song = (id) => {
@@ -24,6 +25,27 @@ export default function Accueil() {
       .then((res) => {})
       .catch((err) => console.log(err.response));
   };
+
+  const contentAlradyAdded = (id) => {
+    console.log("TEST");
+    const config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+      axios
+        .get("/api/user", config)
+        .then((res) => setlistIDContentUser(res.data.content))
+        .catch((err) => console.log(err.response));
+    
+    console.log(listIDContentUser);
+    listIDContentUser.forEach((idContent) => {
+      if (idContent === id) {
+        console.log("TEST");
+        return true;
+      }
+    });
+  }
 
   const details = (id) => {
     navigate(`/Contents/${id}`);
@@ -52,12 +74,11 @@ export default function Accueil() {
               <p>{content.description} </p>
             </li>
             <button onClick={() => details(content._id)}>Details</button>
-            {token ? (
-              <button onClick={() => song(content._id)}>
-                Ecouter plus tard
-              </button>
-            ) : (
-              <button onClick={() => navigate("/Connexion")}> Connexion</button>
+            {token ? 
+              (contentAlradyAdded(content._id) ? (
+                  <button onClick={() => song(content._id)}>Ecouter plus tard</button>) : 
+                  (<button>Deja ajouter</button>)) : 
+              (<button onClick={() => navigate("/Connexion")}> Connexion</button>
             )}
           </div>
         );

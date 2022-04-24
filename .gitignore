@@ -13,6 +13,7 @@ C:\Users\Tom\OneDrive\Boulot\CDA\PROJET SAGA AUDIO\LE_CODE\back_end\node_modules
 /build
 
 # misc
+.vscode
 .DS_Store
 .env.local
 .env.development.local
