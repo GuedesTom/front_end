@@ -27,24 +27,19 @@ export default function Accueil() {
   };
 
   const contentAlradyAdded = (id) => {
-    console.log("TEST");
-    const config = {
+    axios
+      .get("/api/user", {
         headers: {
           Authorization: "Bearer " + token,
         },
-      };
-      axios
-        .get("/api/user", config)
-        .then((res) => setlistIDContentUser(res.data.content))
-        .catch((err) => console.log(err.response));
-    
-    console.log(listIDContentUser);
-    listIDContentUser.forEach((idContent) => {
-      if (idContent === id) {
-        console.log("TEST");
-        return true;
-      }
-    });
+      })
+      .then((res) => {setlistIDContentUser(res.data.content);
+        listIDContentUser.forEach((idContent) => {
+          if (idContent === id) {
+          return true;
+        }
+      })})
+      .catch((err) => console.log(err.response))
   }
 
   const details = (id) => {
@@ -61,6 +56,7 @@ export default function Accueil() {
   return (
     <div id="container">
       {listAAfficher.map((content) => {
+    console.log("first");
         return (
           <div id="card" key={content._id}>
             <li id="title">
@@ -74,12 +70,9 @@ export default function Accueil() {
               <p>{content.description} </p>
             </li>
             <button onClick={() => details(content._id)}>Details</button>
-            {token ? 
-              (contentAlradyAdded(content._id) ? (
-                  <button onClick={() => song(content._id)}>Ecouter plus tard</button>) : 
-                  (<button>Deja ajouter</button>)) : 
-              (<button onClick={() => navigate("/Connexion")}> Connexion</button>
-            )}
+            { contentAlradyAdded(content._id) ? 
+                  <button>Deja ajouter</button> : 
+                  <button onClick={() => song(content._id)}>Ecouter plus tard</button>}
           </div>
         );
       })}
