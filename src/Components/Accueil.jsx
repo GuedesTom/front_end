@@ -62,6 +62,7 @@ export default function Accueil() {
             <li id="title">
               {content.name}
               <ul>
+                <img src={`/api/picture/download/${content.picture}`} alt=""/>
                 <audio
                   src={`/api/file/download/${content.filename}`}
                   controls

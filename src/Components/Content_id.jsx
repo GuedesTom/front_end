@@ -11,7 +11,7 @@ export default function Content_id() {
       .get("/api/content/" + id)
       .then((res) => setcontentAAfficher(res.data))
       .catch((err) => console.log(err.response));
-  }, []);
+  });
   return (
     <div>
       <li>
