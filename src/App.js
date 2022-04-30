@@ -17,13 +17,31 @@ import AdminUser from "./Components/Administration/User";
 import ModifUser from "./Components/ModifUser";
 import ContentId from "./Components/ContentId";
 import ModifContentId from "./Components/ModifContentId";
-import ProtectedRoute from "./Components/Router/UserCheck";
-import AdminRoute from "./Components/Router/AdminCheck";
-import CreatorRoute from "./Components/Router/CreatorCheck";
+import ProtectedRoute from "./UserCheck";
+import axios from "axios";
 
 function App() {
   const [token, settoken] = useState(localStorage.getItem("token"));
+  const [admin, setAdmin] = useState("");
+  const [creator, setCreator] = useState("");
   let Provider = SagagaContext.Provider;
+
+  const requete = () => {
+    axios
+      .get("/api/user", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        setCreator(res.data.content_creator);
+        setAdmin(res.data.admin);
+      })
+      .catch((err) => console.log(err.response));
+  };
+  if (creator === "" || admin === "") {
+    requete();
+  }
   return (
     <Router>
       <Provider value={{ token, settoken }}>
@@ -33,18 +51,39 @@ function App() {
           <Route path="/Inscription" element={<Inscription />} />
           <Route path="/Connexion" element={<Connexion />} />
 
-          <Route element={<ProtectedRoute user={token} />}>
+          <Route
+            element={
+              <ProtectedRoute
+                redirectPath="/Inscription"
+                isAllowed={!!token}
+              />
+            }
+          >
             <Route path="/Maliste" element={<Maliste />} />
             <Route path="/Contents/:id" element={<ContentId />} />
             <Route path="/User/:id" element={<ModifUser />} />
           </Route>
 
-          <Route element={<AdminRoute user={token} />}>
+          <Route
+            element={
+              <ProtectedRoute
+                redirectPath="/Inscription"
+                isAllowed={!!token && (admin === true)}
+              />
+            }
+          >
             <Route path="/Admin/Content" element={<AdminContent />} />
             <Route path="/Admin/User" element={<AdminUser />} />
           </Route>
 
-          <Route element={<CreatorRoute user={token} />}>
+          <Route
+            element={
+              <ProtectedRoute
+                redirectPath="/Inscription"
+                isAllowed={!!token && (admin === true || creator === true)}
+              />
+            }
+          >
             <Route path="/Create" element={<AjouterContent />} />
             <Route path="/Update/:id" element={<ModifContentId />} />
           </Route>
