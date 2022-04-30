@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 export default function AdminRoute({
@@ -8,8 +8,7 @@ export default function AdminRoute({
   children,
 }) {
   const [admin, setAdmin] = useState("");
-  useEffect(() => {
-      axios
+  axios
     .get("/api/user", {
       headers: {
         Authorization: "Bearer " + user,
@@ -19,7 +18,6 @@ export default function AdminRoute({
       setAdmin(res.data.admin);
     })
     .catch((err) => console.log(err.response));
-    }, [user]);
   console.log("admin : " + admin);
   if (!user && admin === true) {
     return children ? children : <Outlet />;
