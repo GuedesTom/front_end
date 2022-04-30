@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { SagagaContext } from "../SagagaContext";
 import axios from "axios";
 
-export default function Inscription() {
+export default function AddContent() {
   let { token } = useContext(SagagaContext);
   const [name, setname] = useState("");
   const [description, setdescription] = useState("");

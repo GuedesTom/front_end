@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SagagaContext } from "../SagagaContext";
 import axios from "axios";
 
-export default function ModifContent_Id() {
+export default function ModifContentId() {
   const { id } = useParams();
   let { token } = useContext(SagagaContext);
   const [name, setname] = useState("");

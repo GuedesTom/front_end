@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import axios from "axios";
 
-export default function Content_id() {
+export default function ContentId() {
   const { id } = useParams();
   const [contentAAfficher, setcontentAAfficher] = useState({});
   useEffect(() => {

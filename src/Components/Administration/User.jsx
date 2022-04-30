@@ -15,7 +15,7 @@ export default function AdminUser() {
 
   useEffect(() => {
     axios
-      .get("/api/content")
+      .get("/api/user/all")
       .then((res) => setlistAAfficher(res.data))
       .catch((err) => console.log(err.response));
   }, [token]);

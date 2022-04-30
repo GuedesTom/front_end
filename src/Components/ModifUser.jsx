@@ -11,13 +11,13 @@ export default function ModifUser() {
   const [description, setdescription] = useState("");
   const [genre, setgenre] = useState("");
   const [pegi, setpegi] = useState("");
-  const [contentAAfficher, setcontentAAfficher] = useState({});
+  const [userAAfficher, setUserAAfficher] = useState({});
   let navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("/api/content/" + id)
-      .then((res) => setcontentAAfficher(res.data))
+      .get("/api/user/" + id)
+      .then((res) => setUserAAfficher(res.data))
       .catch((err) => console.log(err.response));
   });
 
@@ -39,14 +39,14 @@ export default function ModifUser() {
     const content = { name, description, genre, pegi };
     console.log(content);
       axios
-        .post("/api/content", content, {
+        .post("/api/user", content, {
           headers: {
             Authorization: "Bearer " + token,
           },
         })
         .then((res) => {
           console.log(res.data);
-          navigate("/Admin/Content");
+          navigate("/Admin/User");
         })
         .catch((err) => console.log(err.response));
   };
@@ -55,7 +55,7 @@ export default function ModifUser() {
     <div id="div">
       <input
         type="text"
-        placeholder={contentAAfficher.name}
+        placeholder={userAAfficher.name}
         value={name}
         onChange={(event) => setname(event.target.value)}
       />
@@ -63,7 +63,7 @@ export default function ModifUser() {
       <br />
       <input
         type="text"
-        placeholder={contentAAfficher.description}
+        placeholder={userAAfficher.description}
         value={description}
         onChange={(event) => setdescription(event.target.value)}
       />
@@ -71,7 +71,7 @@ export default function ModifUser() {
       <br />
       <input
         type="text"
-        placeholder={contentAAfficher.genre}
+        placeholder={userAAfficher.genre}
         value={genre}
         onChange={(event) => setgenre(event.target.value)}
       />
@@ -79,7 +79,7 @@ export default function ModifUser() {
       <br />
       <input
         type="number"
-        placeholder={contentAAfficher.pegi}
+        placeholder={userAAfficher.pegi}
         value={pegi}
         onChange={(event) => setpegi(event.target.value)}
       />
@@ -87,7 +87,7 @@ export default function ModifUser() {
       <br />
       <button onClick={submitHandler}> Ajouter </button>
 
-      <button onClick={() => deleteContent(contentAAfficher._id)}> Supprimer </button>
+      <button onClick={() => deleteContent(userAAfficher._id)}> Supprimer </button>
     </div>
   );
 }
