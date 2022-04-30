@@ -26,21 +26,21 @@ export default function Accueil() {
       .catch((err) => console.log(err.response));
   };
 
-  const contentAlradyAdded = (id) => {
-    axios
-      .get("/api/user", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => {setlistIDContentUser(res.data.content);
-        listIDContentUser.forEach((idContent) => {
-          if (idContent === id) {
-          return true;
-        }
-      })})
-      .catch((err) => console.log(err.response))
-  }
+  // const contentAlradyAdded = (id) => {
+  //   axios
+  //     .get("/api/user", {
+  //       headers: {
+  //         Authorization: "Bearer " + token,
+  //       },
+  //     })
+  //     .then((res) => {setlistIDContentUser(res.data.content);
+  //       listIDContentUser.forEach((idContent) => {
+  //         if (idContent === id) {
+  //         return true;
+  //       }
+  //     })})
+  //     .catch((err) => console.log(err.response))
+  // }
 
   const details = (id) => {
     navigate(`/Contents/${id}`);
@@ -70,10 +70,10 @@ export default function Accueil() {
               </ul>
               <p>{content.description} </p>
             </li>
-            <button onClick={() => details(content._id)}>Details</button>
+            {/* <button onClick={() => details(content._id)}>Details</button>
             { contentAlradyAdded(content._id) ? 
                   <button>Deja ajouter</button> : 
-                  <button onClick={() => song(content._id)}>Ecouter plus tard</button>}
+                  <button onClick={() => song(content._id)}>Ecouter plus tard</button>} */}
           </div>
         );
       })}
