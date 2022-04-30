@@ -41,16 +41,8 @@ export default function Inscription() {
     .catch((err) => console.log(err.response));
 
   const submitHandler = (event) => {
-    console.log(selectedFile);
-    var ext = selectedFile.name.substring(
-      selectedFile.name.lastIndexOf(".") + 1
-    );
-    console.log(pictureSelect);
-    var extPic = pictureSelect.name.substring(
-      pictureSelect.name.lastIndexOf(".") + 1
-    );
-    const picture = pictureSelect.name + "-" + Date.now() + "." + extPic;
-    const filename = selectedFile.name + "-" + Date.now() + "." + ext;
+    const picture = pictureSelect.name;
+    const filename = selectedFile.name;
     const content = {
       name,
       filename,
