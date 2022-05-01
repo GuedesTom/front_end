@@ -14,13 +14,9 @@ body {
   background: linear-gradient(to right,#e5e5e5, #c5c5c5, #818181);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 100vh;
   color: #fff;
-}
-
-.navbar {
-  align-items: flex-start;
 }
 
 .form__label {

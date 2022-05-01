@@ -12,20 +12,16 @@ export default function AddContent() {
   const [pegi, setpegi] = useState("");
   const [user_creator, setuser_creator] = useState("");
   const [pictureSelect, setPicture] = useState();
-  const [pictureSelected, setPictureSelected] = useState(false);
   const [selectedFile, setSelectedFile] = useState();
-  const [isSelected, setIsSelected] = useState(false);
   let navigate = useNavigate();
 
   const changeHandlerPicture = (event) => {
     setPicture(event.target.files[0]);
-    setPictureSelected(true);
     console.log(pictureSelect);
   };
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
-    setIsSelected(true);
     console.log(selectedFile);
   };
 
