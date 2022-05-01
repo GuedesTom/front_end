@@ -17,17 +17,9 @@ export default function ContentId() {
       <li>
         {contentAAfficher.name}
 
-        <ReactPlayer
-          width="100%"
-          height="100%"
-          url={contentAAfficher.url}
+        <audio
+          src={`/api/file/download/${contentAAfficher.filename}`}
           controls
-          muted
-          config={{
-            youtube: {
-              playerVars: { showinfo: 1 },
-            },
-          }}
         />
 
         <p>{contentAAfficher.description}</p>

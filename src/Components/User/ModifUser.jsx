@@ -1,7 +1,7 @@
 import "../App.css";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { SagagaContext } from "../SagagaContext";
+import { SagagaContext } from "../../SagagaContext";
 import axios from "axios";
 
 export default function ModifUser() {

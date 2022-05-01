@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { SagagaContext } from "../SagagaContext";
+import { SagagaContext } from "../../SagagaContext";
 import axios from "axios";
 
 export default function Content_id() {
