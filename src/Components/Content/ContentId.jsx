@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ReactPlayer from "react-player";
 import axios from "axios";
 
 export default function ContentId() {

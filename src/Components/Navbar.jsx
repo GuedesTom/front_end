@@ -7,14 +7,14 @@ export default function Navbar() {
   let { token, settoken } = useContext(SagagaContext);
   const [creator, setcreator] = useState();
 
-  axios
+  token? (axios
     .get("/api/user", {
       headers: {
         Authorization: "Bearer " + token,
       },
     })
     .then((res) => setcreator(res.data.content_creator))
-    .catch((err) => console.log(err.response));
+    .catch((err) => console.log(err.response))) : (console.log("Pensez a vous connectez"));
 
   const deconnexion = (event) => {
     settoken("");
