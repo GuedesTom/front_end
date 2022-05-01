@@ -26,10 +26,13 @@ export default function AdminContent() {
         console.log("first");
         return (
           <div id="card" key={content._id}>
-            <li id="title">
-              {content.name}
-            </li>
-            <button onClick={() => updateContent(content._id)}>Modifier</button>
+            <li id="title">{content.name}</li>
+            <button
+              onClick={() => updateContent(content._id)}
+              class="custom-btn btn-6"
+            >
+              Modifier
+            </button>
           </div>
         );
       })}

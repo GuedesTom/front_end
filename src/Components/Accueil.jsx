@@ -79,19 +79,32 @@ export default function Accueil() {
               <p>{content.description} </p>
             </li>
 
-            <button onClick={() => details(content._id)}>Details</button>
+            <button
+              onClick={() => details(content._id)}
+              class="custom-btn btn-6"
+            >
+              Details
+            </button>
             {token ? (
               added.forEach((element) => {
                 element._id === content._id ? (
-                  <button> Deja Ajouter </button>
-                ) : (
-                  <button onClick={() => song(content._id)}>
-                    Ecouter plus tard
+                  <button class="custom-btn btn-6">
+                    <span>Deja Ajouter</span>
                   </button>
+                ) : (
+                  <button
+                    onClick={() => song(content._id)}
+                    class="custom-btn btn-6"
+                  ><span>Ecouter plus tard</span></button>
                 );
               })
             ) : (
-              <button onClick={() => navigate("/Connexion")}>Connexion</button>
+              <button
+                onClick={() => navigate("/Connexion")}
+                class="custom-btn btn-6"
+              >
+                <span>Connexion</span>
+              </button>
             )}
           </div>
         );

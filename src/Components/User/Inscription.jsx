@@ -53,7 +53,9 @@ export default function Inscription() {
       />
       <br />
       <br />
-      <button onClick={submitHandler}>Inscription</button>
+      <button onClick={submitHandler} class="custom-btn btn-6">
+        Inscription
+      </button>
     </div>
   );
 }

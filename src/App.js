@@ -55,7 +55,7 @@ function App() {
               element={
                 <ProtectedRoute
                   redirectPath="/Inscription"
-                  isAllowed={!!token}
+                  isAllowed={token}
                 />
               }
             >
@@ -68,7 +68,7 @@ function App() {
               element={
                 <ProtectedRoute
                   redirectPath="/Inscription"
-                  isAllowed={!!token && admin === true}
+                  isAllowed={token && admin === true}
                 />
               }
             >
@@ -80,7 +80,7 @@ function App() {
               element={
                 <ProtectedRoute
                   redirectPath="/Inscription"
-                  isAllowed={!!token && (admin === true || creator === true)}
+                  isAllowed={token && (admin === true || creator === true)}
                 />
               }
             >

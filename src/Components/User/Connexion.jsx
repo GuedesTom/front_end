@@ -41,7 +41,10 @@ export default function Connexion() {
         onChange={(event) => setpassword(event.target.value)}
       />
       <br /> <br />
-      <button onClick={submitHandler}> Connexion </button>
+      <button onClick={submitHandler} class="custom-btn btn-6">
+        {" "}
+        Connexion{" "}
+      </button>
     </div>
   );
 }

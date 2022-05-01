@@ -140,7 +140,12 @@ export default function AddContent() {
       />
       <br />
       <br />
-      <input type="file" name="picture" onChange={changeHandlerPicture} />
+      <input
+        type="file"
+        name="picture"
+        onChange={changeHandlerPicture}
+        class="custom-btn btn-6"
+      />
       {pictureSelected ? (
         <div>
           <p>Filename: {pictureSelect.name}</p>
@@ -155,7 +160,12 @@ export default function AddContent() {
       )}
       <br />
       <br />
-      <input type="file" name="video" onChange={changeHandler} />
+      <input
+        type="file"
+        name="video"
+        onChange={changeHandler}
+        class="custom-btn btn-6"
+      />
       {isSelected ? (
         <div>
           <p>Filename: {selectedFile.name}</p>
@@ -168,7 +178,10 @@ export default function AddContent() {
       ) : (
         <p>Select a file to show details</p>
       )}
-      <button onClick={submitHandler}> Ajouter </button>
+      <button onClick={submitHandler} class="custom-btn btn-6">
+        {" "}
+        Ajouter{" "}
+      </button>
     </div>
   );
 }

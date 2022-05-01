@@ -85,9 +85,18 @@ export default function ModifUser() {
       />
       <br />
       <br />
-      <button onClick={submitHandler}> Ajouter </button>
+      <button onClick={submitHandler} class="custom-btn btn-6">
+        {" "}
+        Ajouter{" "}
+      </button>
 
-      <button onClick={() => deleteContent(userAAfficher._id)}> Supprimer </button>
+      <button
+        onClick={() => deleteContent(userAAfficher._id)}
+        class="custom-btn btn-6"
+      >
+        {" "}
+        Supprimer{" "}
+      </button>
     </div>
   );
 }
