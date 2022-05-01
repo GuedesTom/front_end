@@ -28,31 +28,40 @@ export default function Inscription() {
   };
 
   return (
-    <div id="div">
+    <div class="form__group">
       <input
+        id="username"
+        class="form__input"
         type="text"
-        placeholder="username"
+        placeholder="Nom d'utilisateur"
         value={username}
         onChange={(event) => setusername(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="username" class="form__label">
+        Nom d'utilisateur
+      </label>
       <input
+        id="email"
+        class="form__input"
         type="email"
-        placeholder="Adresse mail"
+        placeholder="Adresse Email"
         value={email}
         onChange={(event) => setemail(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="email" class="form__label">
+        Adresse Email
+      </label>
       <input
+        id="password"
+        class="form__input"
         type="password"
-        placeholder="Mot de pass"
+        placeholder="Mot de passe"
         value={password}
         onChange={(event) => setpassword(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="password" class="form__label">
+        Mot de passe
+      </label>
       <button onClick={submitHandler} class="custom-btn btn-6">
         Inscription
       </button>

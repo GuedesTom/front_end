@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <nav>
       {token ? (
-        <ul>
+        <ul class="navbar">
           <Link to="/" class="custom-btn btn-6">
             <span>Accueil</span>
           </Link>

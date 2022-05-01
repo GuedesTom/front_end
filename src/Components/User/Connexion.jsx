@@ -28,19 +28,27 @@ export default function Connexion() {
   return (
     <div>
       <input
+        id="username"
+        class="form__input"
         type="username"
-        placeholder="Username"
+        placeholder="Nom d'Utilisateur"
         value={username}
         onChange={(event) => setusername(event.target.value)}
       />
-      <br /> <br />
+      <label for="username" class="form__label">
+        Nom d'Utilisateur
+      </label>
       <input
+        id="password"
+        class="form__input"
         type="password"
-        placeholder="Mot de pass"
+        placeholder="Mot de passe"
         value={password}
         onChange={(event) => setpassword(event.target.value)}
       />
-      <br /> <br />
+      <label for="password" class="form__label">
+        Mot de passe
+      </label>
       <button onClick={submitHandler} class="custom-btn btn-6">
         {" "}
         Connexion{" "}

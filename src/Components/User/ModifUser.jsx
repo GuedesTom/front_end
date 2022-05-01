@@ -54,40 +54,51 @@ export default function ModifUser() {
   return (
     <div id="div">
       <input
+        id="name"
+        class="form__input"
         type="text"
         placeholder={userAAfficher.name}
         value={name}
         onChange={(event) => setname(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="name" class="form__label">
+        {userAAfficher.name}
+      </label>
       <input
+        id="description"
+        class="form__input"
         type="text"
         placeholder={userAAfficher.description}
         value={description}
         onChange={(event) => setdescription(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="description" class="form__label">
+        {userAAfficher.description}
+      </label>
       <input
+        id="genre"
+        class="form__input"
         type="text"
         placeholder={userAAfficher.genre}
         value={genre}
         onChange={(event) => setgenre(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="genre" class="form__label">
+        {userAAfficher.genre}
+      </label>
       <input
+        id="pegi"
+        class="form__input"
         type="number"
         placeholder={userAAfficher.pegi}
         value={pegi}
         onChange={(event) => setpegi(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="pegi" class="form__label">
+        {userAAfficher.pegi}
+      </label>
       <button onClick={submitHandler} class="custom-btn btn-6">
-        {" "}
-        Ajouter{" "}
+        Ajouter
       </button>
 
       <button

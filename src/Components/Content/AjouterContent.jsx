@@ -109,78 +109,71 @@ export default function AddContent() {
   return (
     <div id="div">
       <input
+        id="name"
+        class="form__input"
         type="text"
-        placeholder="nom"
+        placeholder="Nom du contenu"
         value={name}
         onChange={(event) => setname(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="name" class="form__label">
+        Nom du contenu
+      </label>
       <input
+        id="description"
+        class="form__input"
         type="text"
-        placeholder="description"
+        placeholder="Description du contenu"
         value={description}
         onChange={(event) => setdescription(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="description" class="form__label">
+        Description du contenu
+      </label>
       <input
+        id="genre"
+        class="form__input"
         type="text"
-        placeholder="genre"
+        placeholder="Genre du contenu"
         value={genre}
         onChange={(event) => setgenre(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="genre" class="form__label">
+        Genre du contenu
+      </label>
       <input
+        id="pegi"
+        class="form__input"
         type="number"
-        placeholder="pegi"
+        placeholder="PEGI du contenu"
         value={pegi}
         onChange={(event) => setpegi(event.target.value)}
       />
-      <br />
-      <br />
+      <label for="pegi" class="form__label">
+        PEGI du contenu
+      </label>
       <input
+        id="picture"
+        class="form__input"
         type="file"
         name="picture"
         onChange={changeHandlerPicture}
-        class="custom-btn btn-6"
       />
-      {pictureSelected ? (
-        <div>
-          <p>Filename: {pictureSelect.name}</p>
-          <p>Size in bytes: {pictureSelect.size}</p>
-          <p>
-            lastModifiedDate:{" "}
-            {pictureSelect.lastModifiedDate.toLocaleDateString()}
-          </p>
-        </div>
-      ) : (
-        <p>Select a file to show details</p>
-      )}
-      <br />
-      <br />
+      <label for="picture" class="form__label">
+        Image du contenu
+      </label>
       <input
+        id="video"
+        class="form__input"
         type="file"
         name="video"
         onChange={changeHandler}
-        class="custom-btn btn-6"
       />
-      {isSelected ? (
-        <div>
-          <p>Filename: {selectedFile.name}</p>
-          <p>Size in bytes: {selectedFile.size}</p>
-          <p>
-            lastModifiedDate:{" "}
-            {selectedFile.lastModifiedDate.toLocaleDateString()}
-          </p>
-        </div>
-      ) : (
-        <p>Select a file to show details</p>
-      )}
+      <label for="video" class="form__label">
+        Video du contenu
+      </label>
       <button onClick={submitHandler} class="custom-btn btn-6">
-        {" "}
-        Ajouter{" "}
+        Ajouter
       </button>
     </div>
   );
