@@ -24,43 +24,61 @@ export default function Navbar() {
   return (
     <nav>
       {token ? (
-        <ul>
-          <Link to="/" class="custom-btn btn-6">
-            <span>Accueil</span>
-          </Link>
+        <ul class="menu-bar">
+          <li>
+            <Link style={{ textDecoration: 'none' }} to="/">
+              <span>Accueil</span>
+            </Link>
+          </li>
           {creator ? (
-            <Link to="/Create" class="custom-btn btn-6">
-              <span>Ajouter Contenue</span>
-            </Link>
+            <li>
+              <Link style={{ textDecoration: 'none' }} to="/Create">
+                <span>Ajouter Contenue</span>
+              </Link>
+            </li>
           ) : null}
           {admin ? (
-            <Link to="/Admin/Content" class="custom-btn btn-6">
-              <span>Gerer Content</span>
-            </Link>
+            <li>
+              <Link style={{ textDecoration: 'none' }} to="/Admin/Content">
+                <span>Gerer Content</span>
+              </Link>
+            </li>
           ) : null}
           {admin ? (
-            <Link to="/Admin/User" class="custom-btn btn-6">
-              <span>Gerer Utilisateur</span>
-            </Link>
+            <li>
+              <Link style={{ textDecoration: 'none' }} to="/Admin/User">
+                <span>Gerer Utilisateur</span>
+              </Link>
+            </li>
           ) : null}
-          <Link to="/Maliste" class="custom-btn btn-6">
-            <span>Ma Liste</span>
-          </Link>
-          <Link to="/" onClick={deconnexion} class="custom-btn btn-6">
-            <span>Deconnexion</span>
-          </Link>
+          <li>
+            <Link style={{ textDecoration: 'none' }} to="/Maliste">
+              <span>Ma Liste</span>
+            </Link>
+          </li>
+          <li>
+            <Link style={{ textDecoration: 'none' }} to="/" onClick={deconnexion}>
+              <span>Deconnexion</span>
+            </Link>
+          </li>
         </ul>
       ) : (
-        <ul>
-          <Link to="/" class="custom-btn btn-6">
-            <span>Accueil</span>
-          </Link>
-          <Link to="/Inscription" class="custom-btn btn-6">
-            <span>Inscription</span>
-          </Link>
-          <Link to="/Connexion" class="custom-btn btn-6">
-            <span>Connexion</span>
-          </Link>
+        <ul class="menu-bar">
+          <li>
+            <Link style={{ textDecoration: 'none' }} to="/">
+              <span>Accueil</span>
+            </Link>
+          </li>
+          <li>
+            <Link style={{ textDecoration: 'none' }} to="/Inscription">
+              <span>Inscription</span>
+            </Link>
+          </li>
+          <li>
+            <Link style={{ textDecoration: 'none' }} to="/Connexion">
+              <span>Connexion</span>
+            </Link>
+          </li>
         </ul>
       )}
     </nav>

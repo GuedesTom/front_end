@@ -22,20 +22,39 @@ export default function AdminContent() {
 
   return (
     <div id="container">
-      {listAAfficher.map((content) => {
-        console.log("first");
-        return (
-          <div id="card" key={content._id}>
-            <li id="title">{content.name}</li>
-            <button
-              onClick={() => updateContent(content._id)}
-              class="custom-btn btn-6"
-            >
-              Modifier
-            </button>
-          </div>
-        );
-      })}
+      <ul class="cards">
+        {listAAfficher.map((content) => {
+          console.log("first");
+          return (
+            <li>
+              <a onClick={() => updateContent(content._id)} class="card">
+                <img
+                  src={`/api/picture/download/${content.picture}`}
+                  class="card__image"
+                  alt=""
+                />
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                      <path />
+                    </svg>
+                    <img
+                      class="card__thumb"
+                      src="https://i.imgur.com/7D7I6dI.png"
+                      alt=""
+                    />
+                    <div class="card__header-text">
+                      <h3 class="card__title">{content.name}</h3>
+                      <span class="card__status">{content.genre}</span>
+                    </div>
+                  </div>
+                  <p class="card__description">{content.description}</p>
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

@@ -6,11 +6,11 @@ import axios from "axios";
 
 export default function AddContent() {
   let { token } = useContext(SagagaContext);
-  const [name, setname] = useState("");
-  const [description, setdescription] = useState("");
-  const [genre, setgenre] = useState("");
-  const [pegi, setpegi] = useState("");
-  const [user_creator, setuser_creator] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [genres, setGenres] = useState("");
+  const [pegi, setPegi] = useState("");
+  const [user_creator, setUser_Creator] = useState("");
   const [pictureSelect, setPicture] = useState();
   const [selectedFile, setSelectedFile] = useState();
   let navigate = useNavigate();
@@ -32,7 +32,7 @@ export default function AddContent() {
       },
     })
     .then((res) => {
-      setuser_creator(res.data._id);
+      setUser_Creator(res.data._id);
     })
     .catch((err) => console.log(err.response));
 
@@ -44,12 +44,12 @@ export default function AddContent() {
       filename,
       description,
       picture,
-      genre,
+      genres,
       pegi,
       user_creator,
     };
     console.log(content);
-    if (name === "" || description === "" || genre === "" || pegi === "") {
+    if (name === "" || description === "" || genres === "" || pegi === "") {
       alert("Manque des champs!");
     } else {
       axios
@@ -110,7 +110,7 @@ export default function AddContent() {
         type="text"
         placeholder="Nom du contenu"
         value={name}
-        onChange={(event) => setname(event.target.value)}
+        onChange={(event) => setName(event.target.value)}
       />
       <label for="name" class="form__label">
         Nom du contenu
@@ -121,21 +121,21 @@ export default function AddContent() {
         type="text"
         placeholder="Description du contenu"
         value={description}
-        onChange={(event) => setdescription(event.target.value)}
+        onChange={(event) => setDescription(event.target.value)}
       />
       <label for="description" class="form__label">
         Description du contenu
       </label>
       <input
-        id="genre"
+        id="genres"
         class="form__input"
         type="text"
-        placeholder="Genre du contenu"
-        value={genre}
-        onChange={(event) => setgenre(event.target.value)}
+        placeholder="Genres du contenu"
+        value={genres}
+        onChange={(event) => setGenres(event.target.value)}
       />
-      <label for="genre" class="form__label">
-        Genre du contenu
+      <label for="genres" class="form__label">
+        Genres du contenu
       </label>
       <input
         id="pegi"
@@ -143,7 +143,7 @@ export default function AddContent() {
         type="number"
         placeholder="PEGI du contenu"
         value={pegi}
-        onChange={(event) => setpegi(event.target.value)}
+        onChange={(event) => setPegi(event.target.value)}
       />
       <label for="pegi" class="form__label">
         PEGI du contenu

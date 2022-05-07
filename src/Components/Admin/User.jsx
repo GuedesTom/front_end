@@ -22,8 +22,9 @@ export default function AdminUser() {
 
   return (
     <div id="container">
-      {listAAfficher.map((content) => {
-        console.log("first");
+      {listAAfficher.map((content) => { 
+      console.log(listAAfficher);
+       console.log("first");
         return (
           <div id="card" key={content._id}>
             <li id="title">{content.name}</li>
