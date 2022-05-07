@@ -67,17 +67,22 @@ export default function Accueil() {
         console.log("first");
         return (
           <div class="container">
-	<div class="card">
-		<figure class="card__thumb">
-			<img src="https://source.unsplash.com/75S9fpDJVdo/300x510" alt="Picture by Kyle Cottrell" class="card__image">
-			<figcaption class="card__caption">
-				<h2 class="card__title">NASA Has Found Hundreds Of Potential New Planets</h2>
-				<p class="card__snippet">NASA released a list of 219 new “planet candidates” discovered by the Kepler space telescope, 10 of which are similar to Earth’s size and may be habitable by other life forms.</p>
-				<a href="" class="card__button">Read more</a>
-			</figcaption>
-		</figure>
-	</div>
-      //     <div id="card" key={content._id}>
+          	<div class="card">
+          		<figure class="card__thumb">
+          			<img src="https://source.unsplash.com/75S9fpDJVdo/300x510" alt="Picture by Kyle Cottrell" class="card__image" />
+          			<figcaption class="card__caption">
+          				<h2 class="card__title">NASA Has Found Hundreds Of Potential New Planets</h2>
+          				<p class="card__snippet">NASA released a list of 219 new “planet candidates” discovered by the Kepler space telescope, 10 of which are similar to Earth’s size and may be habitable by other life forms.</p>
+          				<a href="" class="card__button">Read more</a>
+          			</figcaption>
+          		</figure>
+          	</div>
+          </div>)
+        }
+      )}
+    </div>)
+
+//     <div id="card" key={content._id}>
       //       <li id="title">
       //         {content.name}
       //         <ul>
@@ -118,10 +123,4 @@ export default function Accueil() {
       //           class="custom-btn btn-6"
       //         >
       //           <span>Connexion</span>
-      //         </button>
-      //       )}
-      //     </div>
-      //   );
-      // })}
-  );
-}
+      //         </button>)}
