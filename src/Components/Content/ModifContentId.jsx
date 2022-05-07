@@ -130,7 +130,7 @@ export default function ModifContentId() {
         {contentAAfficher.pegi}
       </label>
       <div class="btn-container">
-        <button onClick={() => setParams}>
+        <button onClick={submitHandler}>
           <span class="text">Ajouter</span>
           <div class="icon-container">
             <div class="icon icon--left">
