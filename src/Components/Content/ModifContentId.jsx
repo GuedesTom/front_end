@@ -9,7 +9,7 @@ export default function ModifContentId() {
   let { token } = useContext(SagagaContext);
   const [name, setname] = useState("");
   const [description, setdescription] = useState("");
-  const [genre, setgenre] = useState("");
+  const [genres, setgenres] = useState("");
   const [pegi, setpegi] = useState("");
   const [contentAAfficher, setcontentAAfficher] = useState({});
   let navigate = useNavigate();
@@ -35,11 +35,33 @@ export default function ModifContentId() {
       .catch((err) => console.log(err.response));
   };
 
+  const setParams = async setparam => {
+  if (name === "" || description === "" || genres === "" || pegi === "") {
+    if (name === "") {
+      console.log("pas de nom");
+      await setname(contentAAfficher.name);
+    }
+    if (description === "") {
+      console.log("pas de description");
+      await setdescription(contentAAfficher.description);
+    }
+    if (genres === "") {
+      console.log("pas de genres");
+      await setgenres(contentAAfficher.genres);
+    }
+    if (pegi === "") {
+      console.log("pas de pegi");
+      await setpegi(contentAAfficher.pegi);
+    }
+  }
+  submitHandler();
+  }
+
   const submitHandler = (event) => {
-    const content = { name, description, genre, pegi };
+    const content = { name, description, genres, pegi };
     console.log(content);
     axios
-      .post("/api/content", content, {
+      .patch("/api/content/" + contentAAfficher._id, content, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -76,15 +98,15 @@ export default function ModifContentId() {
         {contentAAfficher.description}
       </label>
       <input
-        id="genre"
+        id="genres"
         class="form__input"
         type="text"
-        placeholder={contentAAfficher.genre}
-        value={genre}
-        onChange={(event) => setgenre(event.target.value)}
+        placeholder={contentAAfficher.genres}
+        value={genres}
+        onChange={(event) => setgenres(event.target.value)}
       />
-      <label for="genre" class="form__label">
-        {contentAAfficher.genre}
+      <label for="genres" class="form__label">
+        {contentAAfficher.genres}
       </label>
       <input
         id="pegi"
@@ -97,7 +119,7 @@ export default function ModifContentId() {
       <label for="pegi" class="form__label">
         {contentAAfficher.pegi}
       </label>
-      <button onClick={submitHandler} class="custom-btn btn-6">
+      <button onClick={() => setParams} class="custom-btn btn-6">
         Ajouter
       </button>
 

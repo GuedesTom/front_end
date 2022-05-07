@@ -45,7 +45,7 @@ export default function AdminContent() {
                     />
                     <div class="card__header-text">
                       <h3 class="card__title">{content.name}</h3>
-                      <span class="card__status">{content.genre}</span>
+                      <span class="card__status">{content.genres}</span>
                     </div>
                   </div>
                   <p class="card__description">{content.description}</p>

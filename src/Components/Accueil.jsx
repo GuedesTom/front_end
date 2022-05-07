@@ -88,7 +88,7 @@ export default function Accueil() {
                     <div class="card__header-text">
                       <h3 class="card__title">{content.name}</h3>
                       <span class="card__status">
-                        {content.genre}
+                        {content.genres}
                       </span>
                     </div>
                   </div>
