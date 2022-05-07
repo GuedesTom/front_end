@@ -9,7 +9,6 @@ export default function Accueil() {
   const [listAAfficher, setlistAAfficher] = useState([]);
   const [listIDContentUser, setlistIDContentUser] = useState([]);
   const [added, setAdded] = useState([]);
-  const [contentParDeux, setContentParDeux] = useState([]);
   let navigate = useNavigate();
 
   const song = (id) => {
@@ -24,7 +23,7 @@ export default function Accueil() {
           },
         }
       )
-      .then((res) => {})
+      .then((res) => console.log(res.data))
       .catch((err) => console.log(err.response));
   };
 
@@ -48,7 +47,7 @@ export default function Accueil() {
           })
           .catch((err) => console.log(err.response))
       : console.log("Pensez a vous connectez");
-  });
+  }, [listAAfficher, token]);
 
   const details = (id) => {
     navigate(`/Contents/${id}`);
@@ -64,9 +63,7 @@ export default function Accueil() {
   return (
     <div id="container">
       <ul class="cards">
-      {listAAfficher.map((content) => {
-        // mon affichage devrait s'appliquer simplement au chargement de la page... malheureusement il boucle a l'infini...
-          console.log("first");
+        {listAAfficher.map((content) => {
           return (
             <li>
               <a onClick={() => details(content._id)} class="card">
@@ -81,25 +78,22 @@ export default function Accueil() {
                       <path />
                     </svg>
                     <img
+                      onClick={() => song(content._id)}
                       class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
+                      src="https://cdn-icons.flaticon.com/png/512/1665/premium/1665680.png?token=exp=1651931861~hmac=e2fcf4966565dba5b9ca620054b6e629"
                       alt=""
                     />
                     <div class="card__header-text">
                       <h3 class="card__title">{content.name}</h3>
-                      <span class="card__status">
-                        {content.genres}
-                      </span>
+                      <span class="card__status">{content.genres}</span>
                     </div>
                   </div>
-                  <p class="card__description">
-                    {content.description}
-                  </p>
+                  <p class="card__description">{content.description}</p>
                 </div>
               </a>
             </li>
           );
-      })}
+        })}
       </ul>
     </div>
   );

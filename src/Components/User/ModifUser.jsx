@@ -23,14 +23,14 @@ export default function ModifUser() {
 
   const deleteContent = (id) => {
     axios
-      .delete("/api/content/" + id, {
+      .delete("/api/user/" + id, {
         headers: {
           Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
         console.log(res.data);
-        navigate("/Admin/Content");
+        navigate("/Admin/User");
       })
       .catch((err) => console.log(err.response));
   }
@@ -46,10 +46,16 @@ export default function ModifUser() {
         })
         .then((res) => {
           console.log(res.data);
-          navigate("/Admin/User");
+          navigate("/");
         })
         .catch((err) => console.log(err.response));
   };
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+      submitHandler();
+      }
+    };
 
   return (
     <div id="div">
@@ -60,6 +66,7 @@ export default function ModifUser() {
         placeholder={userAAfficher.name}
         value={name}
         onChange={(event) => setname(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="name" class="form__label">
         {userAAfficher.name}
@@ -71,6 +78,7 @@ export default function ModifUser() {
         placeholder={userAAfficher.description}
         value={description}
         onChange={(event) => setdescription(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="description" class="form__label">
         {userAAfficher.description}
@@ -82,6 +90,7 @@ export default function ModifUser() {
         placeholder={userAAfficher.genre}
         value={genre}
         onChange={(event) => setgenre(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="genre" class="form__label">
         {userAAfficher.genre}
@@ -93,21 +102,56 @@ export default function ModifUser() {
         placeholder={userAAfficher.pegi}
         value={pegi}
         onChange={(event) => setpegi(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="pegi" class="form__label">
         {userAAfficher.pegi}
       </label>
-      <button onClick={submitHandler} class="custom-btn btn-6">
-        Ajouter
-      </button>
+      <div class="btn-container">
+        <button onClick={submitHandler}>
+          <span class="text">Ajouter</span>
+          <div class="icon-container">
+            <div class="icon icon--left">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+            <div class="icon icon--right">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <svg style={{ display: "none" }}>
+        <symbol id="arrow-right" viewBox="0 0 20 10">
+          <path d="M14.84 0l-1.08 1.06 3.3 3.2H0v1.49h17.05l-3.3 3.2L14.84 10 20 5l-5.16-5z"></path>
+        </symbol>
+      </svg>
 
-      <button
-        onClick={() => deleteContent(userAAfficher._id)}
-        class="custom-btn btn-6"
-      >
-        {" "}
-        Supprimer{" "}
-      </button>
+      <div class="btn-container">
+        <button onClick={() => deleteContent(userAAfficher._id)}>
+          <span class="text">Supprimer</span>
+          <div class="icon-container">
+            <div class="icon icon--left">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+            <div class="icon icon--right">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <svg style={{ display: "none" }}>
+        <symbol id="arrow-right" viewBox="0 0 20 10">
+          <path d="M14.84 0l-1.08 1.06 3.3 3.2H0v1.49h17.05l-3.3 3.2L14.84 10 20 5l-5.16-5z"></path>
+        </symbol>
+      </svg>
     </div>
   );
 }

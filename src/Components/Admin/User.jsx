@@ -9,8 +9,8 @@ export default function AdminUser() {
   const [listAAfficher, setlistAAfficher] = useState([]);
   let navigate = useNavigate();
 
-  const updateContent = (id) => {
-    navigate(`/Update/${id}`);
+  const updateUser = (id) => {
+    navigate(`/User/${id}`);
   };
 
   useEffect(() => {
@@ -22,21 +22,39 @@ export default function AdminUser() {
 
   return (
     <div id="container">
-      {listAAfficher.map((content) => { 
-      console.log(listAAfficher);
-       console.log("first");
-        return (
-          <div id="card" key={content._id}>
-            <li id="title">{content.name}</li>
-            <button
-              onClick={() => updateContent(content._id)}
-              class="custom-btn btn-6"
-            >
-              Modifier
-            </button>
-          </div>
-        );
-      })}
+      <ul class="cards">
+        {listAAfficher.map((user) => {
+          console.log("first");
+          return (
+            <li>
+              <a onClick={() => updateUser(user._id)} class="card">
+                <img
+                  src="https://thumbs.dreamstime.com/b/ic-ne-d-utilisateur-de-compte-silhouette-de-signe-d-un-homme-97283162.jpg"
+                  class="card__image"
+                  alt=""
+                />
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                      <path />
+                    </svg>
+                    <img
+                      class="card__thumb"
+                      src="https://i.imgur.com/7D7I6dI.png"
+                      alt=""
+                    />
+                    <div class="card__header-text">
+                      <h3 class="card__title">{user.username}</h3>
+                      <span class="card__status">Creator : {user.content_creator}</span>
+                    </div>
+                  </div>
+                  <p class="card__description">Admin : {user.admin}</p>
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

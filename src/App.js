@@ -6,7 +6,6 @@ import Accueil from "./Components/Accueil";
 import Connexion from "./Components/User/Connexion";
 import Inscription from "./Components/User/Inscription";
 import Navbar from "./Components/Navbar";
-import Maliste from "./Components/User/Maliste";
 import AjouterContent from "./Components/Content/AjouterContent";
 import AdminContent from "./Components/Admin/Content";
 import AdminUser from "./Components/Admin/User";
@@ -59,7 +58,6 @@ function App() {
                 />
               }
             >
-              <Route path="/Maliste" element={<Maliste />} />
               <Route path="/Contents/:id" element={<ContentId />} />
               <Route path="/User/:id" element={<ModifUser />} />
             </Route>

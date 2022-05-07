@@ -8,14 +8,19 @@ export default function Navbar() {
   const [admin, setAdmin] = useState();
   const [creator, setCreator] = useState();
 
-  token? (axios
-    .get("/api/user", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-    .then((res) => {setCreator(res.data.content_creator); setAdmin(res.data.admin)})
-    .catch((err) => console.log(err.response))) : (console.log("Pensez a vous connectez"));
+  token
+    ? axios
+        .get("/api/user", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          setCreator(res.data.content_creator);
+          setAdmin(res.data.admin);
+        })
+        .catch((err) => console.log(err.response))
+    : console.log("Pensez a vous connectez");
 
   const deconnexion = (event) => {
     settoken("");
@@ -25,60 +30,59 @@ export default function Navbar() {
     <nav>
       {token ? (
         <ul class="menu-bar">
-          <li>
-            <Link style={{ textDecoration: 'none' }} to="/">
+          <Link style={{ textDecoration: "none" }} to="/">
+            <li>
               <span>Accueil</span>
-            </Link>
-          </li>
+            </li>
+          </Link>
+
           {creator ? (
-            <li>
-              <Link style={{ textDecoration: 'none' }} to="/Create">
+            <Link style={{ textDecoration: "none" }} to="/Create">
+              <li>
                 <span>Ajouter Contenue</span>
-              </Link>
-            </li>
+              </li>
+            </Link>
           ) : null}
           {admin ? (
-            <li>
-              <Link style={{ textDecoration: 'none' }} to="/Admin/Content">
+            <Link style={{ textDecoration: "none" }} to="/Admin/Content">
+              <li>
                 <span>Gerer Content</span>
-              </Link>
-            </li>
+              </li>
+            </Link>
           ) : null}
           {admin ? (
-            <li>
-              <Link style={{ textDecoration: 'none' }} to="/Admin/User">
+            <Link style={{ textDecoration: "none" }} to="/Admin/User">
+              <li>
                 <span>Gerer Utilisateur</span>
-              </Link>
-            </li>
+              </li>
+            </Link>
           ) : null}
-          <li>
-            <Link style={{ textDecoration: 'none' }} to="/Maliste">
-              <span>Ma Liste</span>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: 'none' }} to="/" onClick={deconnexion}>
+
+          <Link style={{ textDecoration: "none" }} to="/" onClick={deconnexion}>
+            <li>
               <span>Deconnexion</span>
-            </Link>
-          </li>
+            </li>
+          </Link>
         </ul>
       ) : (
         <ul class="menu-bar">
-          <li>
-            <Link style={{ textDecoration: 'none' }} to="/">
+          <Link style={{ textDecoration: "none" }} to="/">
+            <li>
               <span>Accueil</span>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: 'none' }} to="/Inscription">
+            </li>
+          </Link>
+
+          <Link style={{ textDecoration: "none" }} to="/Inscription">
+            <li>
               <span>Inscription</span>
-            </Link>
-          </li>
-          <li>
-            <Link style={{ textDecoration: 'none' }} to="/Connexion">
+            </li>
+          </Link>
+
+          <Link style={{ textDecoration: "none" }} to="/Connexion">
+            <li>
               <span>Connexion</span>
-            </Link>
-          </li>
+            </li>
+          </Link>
         </ul>
       )}
     </nav>

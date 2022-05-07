@@ -30,7 +30,7 @@ export default function ModifContentId() {
       })
       .then((res) => {
         console.log(res.data);
-        navigate("/Admin/Content");
+        navigate("/");
       })
       .catch((err) => console.log(err.response));
   };
@@ -73,6 +73,12 @@ export default function ModifContentId() {
       .catch((err) => console.log(err.response));
   };
 
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+      submitHandler();
+      }
+    };
+
   return (
     <div id="div">
       <input
@@ -82,6 +88,7 @@ export default function ModifContentId() {
         placeholder={contentAAfficher.name}
         value={name}
         onChange={(event) => setname(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="name" class="form__label">
         {contentAAfficher.name}
@@ -93,6 +100,7 @@ export default function ModifContentId() {
         placeholder={contentAAfficher.description}
         value={description}
         onChange={(event) => setdescription(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="description" class="form__label">
         {contentAAfficher.description}
@@ -104,6 +112,7 @@ export default function ModifContentId() {
         placeholder={contentAAfficher.genres}
         value={genres}
         onChange={(event) => setgenres(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="genres" class="form__label">
         {contentAAfficher.genres}
@@ -115,21 +124,56 @@ export default function ModifContentId() {
         placeholder={contentAAfficher.pegi}
         value={pegi}
         onChange={(event) => setpegi(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="pegi" class="form__label">
         {contentAAfficher.pegi}
       </label>
-      <button onClick={() => setParams} class="custom-btn btn-6">
-        Ajouter
-      </button>
+      <div class="btn-container">
+        <button onClick={() => setParams}>
+          <span class="text">Ajouter</span>
+          <div class="icon-container">
+            <div class="icon icon--left">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+            <div class="icon icon--right">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <svg style={{ display: "none" }}>
+        <symbol id="arrow-right" viewBox="0 0 20 10">
+          <path d="M14.84 0l-1.08 1.06 3.3 3.2H0v1.49h17.05l-3.3 3.2L14.84 10 20 5l-5.16-5z"></path>
+        </symbol>
+      </svg>
 
-      <button
-        onClick={() => deleteContent(contentAAfficher._id)}
-        class="custom-btn btn-6"
-      >
-        {" "}
-        Supprimer{" "}
-      </button>
+      <div class="btn-container">
+        <button onClick={() => deleteContent(contentAAfficher._id)}>
+          <span class="text">Supprimer</span>
+          <div class="icon-container">
+            <div class="icon icon--left">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+            <div class="icon icon--right">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <svg style={{ display: "none" }}>
+        <symbol id="arrow-right" viewBox="0 0 20 10">
+          <path d="M14.84 0l-1.08 1.06 3.3 3.2H0v1.49h17.05l-3.3 3.2L14.84 10 20 5l-5.16-5z"></path>
+        </symbol>
+      </svg>
     </div>
   );
 }

@@ -17,12 +17,10 @@ export default function AddContent() {
 
   const changeHandlerPicture = (event) => {
     setPicture(event.target.files[0]);
-    console.log(pictureSelect);
   };
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
-    console.log(selectedFile);
   };
 
   axios
@@ -102,6 +100,12 @@ export default function AddContent() {
       });
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      submitHandler();
+    }
+  };
+
   return (
     <div id="div">
       <input
@@ -111,6 +115,7 @@ export default function AddContent() {
         placeholder="Nom du contenu"
         value={name}
         onChange={(event) => setName(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="name" class="form__label">
         Nom du contenu
@@ -122,6 +127,7 @@ export default function AddContent() {
         placeholder="Description du contenu"
         value={description}
         onChange={(event) => setDescription(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="description" class="form__label">
         Description du contenu
@@ -133,6 +139,7 @@ export default function AddContent() {
         placeholder="Genres du contenu"
         value={genres}
         onChange={(event) => setGenres(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="genres" class="form__label">
         Genres du contenu
@@ -144,6 +151,7 @@ export default function AddContent() {
         placeholder="PEGI du contenu"
         value={pegi}
         onChange={(event) => setPegi(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="pegi" class="form__label">
         PEGI du contenu
@@ -154,6 +162,7 @@ export default function AddContent() {
         type="file"
         name="picture"
         onChange={changeHandlerPicture}
+        onKeyDown={handleKeyDown}
       />
       <label for="picture" class="form__label">
         Image du contenu
@@ -164,13 +173,33 @@ export default function AddContent() {
         type="file"
         name="video"
         onChange={changeHandler}
+        onKeyDown={handleKeyDown}
       />
       <label for="video" class="form__label">
         Video du contenu
       </label>
-      <button onClick={submitHandler} class="custom-btn btn-6">
-        Ajouter
-      </button>
+      <div class="btn-container">
+        <button onClick={submitHandler}>
+          <span class="text">Ajouter</span>
+          <div class="icon-container">
+            <div class="icon icon--left">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+            <div class="icon icon--right">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <svg style={{ display: "none" }}>
+        <symbol id="arrow-right" viewBox="0 0 20 10">
+          <path d="M14.84 0l-1.08 1.06 3.3 3.2H0v1.49h17.05l-3.3 3.2L14.84 10 20 5l-5.16-5z"></path>
+        </symbol>
+      </svg>
     </div>
   );
 }

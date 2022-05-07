@@ -25,6 +25,12 @@ export default function Connexion() {
     }
   };
 
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter") {
+      submitHandler();
+      }
+    };
+
   return (
     <div>
       <input
@@ -34,6 +40,7 @@ export default function Connexion() {
         placeholder="Nom d'Utilisateur"
         value={username}
         onChange={(event) => setusername(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="username" class="form__label">
         Nom d'Utilisateur
@@ -45,14 +52,33 @@ export default function Connexion() {
         placeholder="Mot de passe"
         value={password}
         onChange={(event) => setpassword(event.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <label for="password" class="form__label">
         Mot de passe
       </label>
-      <button onClick={submitHandler} class="custom-btn btn-6">
-        {" "}
-        Connexion{" "}
-      </button>
+      <div class="btn-container">
+        <button onClick={submitHandler}>
+          <span class="text">Connexion</span>
+          <div class="icon-container">
+            <div class="icon icon--left">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+            <div class="icon icon--right">
+              <svg>
+                <use xlinkHref="#arrow-right"></use>
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <svg style={{ display: "none" }}>
+        <symbol id="arrow-right" viewBox="0 0 20 10">
+          <path d="M14.84 0l-1.08 1.06 3.3 3.2H0v1.49h17.05l-3.3 3.2L14.84 10 20 5l-5.16-5z"></path>
+        </symbol>
+      </svg>
     </div>
   );
 }

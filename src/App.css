@@ -29,6 +29,8 @@ body {
   color: #fff;
 }
 
+/*---------------------NavBar------------------------*/
+
 .menu-bar {
   border-radius: 25px;
   height: -webkit-fit-content;
@@ -199,6 +201,7 @@ body {
   font-family: 'Roboto', sans-serif;
   color: #333;
   font-size: 1.2rem;
+  border-radius: 25px;
 	margin: 0 auto;
   padding: 1.5rem 2rem;
   background-color: rgb(255, 255, 255);
@@ -218,105 +221,113 @@ body {
 
 /*---------------------BUTTON------------------------*/
 
+.btn-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+}
+.btn-container:nth-child(1) {
+  --btn-bg: #da0000;
+  --bg: #f22c3a;
+}
+.btn-container:nth-child(2) {
+  --btn-bg: #fac300;
+  --bg: #fc6100;
+}
+
 button {
-  margin: 20px;
-  outline: none;
-}
-
-.custom-btn {
-  width: 130px;
-  height: 40px;
-  padding: 10px 25px;
-  border: 2px solid #000;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  --width: 180px;
+  --height: 60px;
+  border: 0;
   position: relative;
-  display: inline-block;
-}
-
-.btn-6 {
-   background: #000;
+  min-width: var(--width);
+  min-height: var(--height);
+  border-radius: var(--height);
   color: #fff;
-  line-height: 42px;
-  padding: 0;
-  border: none;
+  font-family: "Montserrat";
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1rem;
 }
-
-.btn-6 span {
+button .text,
+button .icon-container {
   position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
+  z-index: 2;
 }
-
-.btn-6:before,
-
-.btn-6:after {
+button .icon-container {
+  --icon-size: 25px;
+  position: relative;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-left: 15px;
+  transition: transform 500ms ease;
+}
+button .icon-container .icon {
   position: absolute;
-  content: "";
-  height: 0%;
-  width: 2px;
-  background: #000;
-}
-
-.btn-6:before {
-  right: 0;
-  top: 0;
-  transition: all 500ms ease;
-}
-
-.btn-6:after {
-  left: 0;
-  bottom: 0;
-  transition: all 500ms ease;
-}
-
-.btn-6:hover{
-  color: #000;
-  background: transparent;
-}
-
-.btn-6:hover:before {
-  transition: all 500ms ease;
-  height: 100%;
-}
-
-.btn-6:hover:after {
-  transition: all 500ms ease;
-  height: 100%;
-}
-
-.btn-6 span:before,
-
-.btn-6 span:after {
-  position: absolute;
-  content: "";
-  background: #000;
-}
-
-.btn-6 span:before {
   left: 0;
   top: 0;
-  width: 0%;
-  height: 2px;
-  transition: all 500ms ease;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  transition: transform 500ms ease, opacity 250ms ease;
 }
-
-.btn-6 span:after {
-  right: 0;
-  bottom: 0;
-  width: 0%;
-  height: 2px;
-  transition: all 500ms ease;
+button .icon-container .icon--left {
+  transform: translateX(-200%);
+  opacity: 0;
 }
-
-.btn-6 span:hover:before {
+button .icon-container .icon svg {
   width: 100%;
+  height: 100%;
+  fill: #fff;
+}
+button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--btn-bg);
+  border-radius: var(--height);
+  z-index: 1;
+  transition: transform 500ms ease;
+}
+button:hover::after {
+  transform: translateX(65%);
+}
+button:hover .icon-container {
+  transform: translateX(125%);
+}
+button:hover .icon-container .icon--left {
+  transform: translateX(0);
+  opacity: 1;
+}
+button:hover .icon-container .icon--right {
+  transform: translateX(200%);
+  opacity: 0;
 }
 
-.btn-6 span:hover:after {
-  width: 100%;
+.support {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 10px;
+  display: flex;
+}
+.support a {
+  margin: 0 10px;
+  color: #fff;
+  font-size: 1.8rem;
+  backface-visibility: hidden;
+  transition: all 150ms ease;
+}
+.support a:hover {
+  transform: scale(1.1);
 }
