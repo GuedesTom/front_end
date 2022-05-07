@@ -9,6 +9,7 @@ export default function Accueil() {
   const [listAAfficher, setlistAAfficher] = useState([]);
   const [listIDContentUser, setlistIDContentUser] = useState([]);
   const [added, setAdded] = useState([]);
+  const [contentParDeux, setContentParDeux] = useState([]);
   let navigate = useNavigate();
 
   const song = (id) => {
@@ -28,8 +29,8 @@ export default function Accueil() {
   };
 
   useEffect(() => {
-    token?
-      (axios
+    token
+      ? axios
           .get("/api/user", {
             headers: {
               Authorization: "Bearer " + token,
@@ -45,8 +46,8 @@ export default function Accueil() {
               });
             });
           })
-          .catch((err) => console.log(err.response)))
-      : (console.log("Pensez a vous connectez"));
+          .catch((err) => console.log(err.response))
+      : console.log("Pensez a vous connectez");
   });
 
   const details = (id) => {
@@ -62,65 +63,87 @@ export default function Accueil() {
 
   return (
     <div id="container">
+      <ul class="cards">
       {listAAfficher.map((content) => {
         // mon affichage devrait s'appliquer simplement au chargement de la page... malheureusement il boucle a l'infini...
-        console.log("first");
-        return (
-          <div class="container">
-          	<div class="card">
-          		<figure class="card__thumb">
-          			<img src="https://source.unsplash.com/75S9fpDJVdo/300x510" alt="Picture by Kyle Cottrell" class="card__image" />
-          			<figcaption class="card__caption">
-          				<h2 class="card__title">NASA Has Found Hundreds Of Potential New Planets</h2>
-          				<p class="card__snippet">NASA released a list of 219 new “planet candidates” discovered by the Kepler space telescope, 10 of which are similar to Earth’s size and may be habitable by other life forms.</p>
-          				<a href="" class="card__button">Read more</a>
-          			</figcaption>
-          		</figure>
-          	</div>
-          </div>)
-        }
-      )}
-    </div>)
+          console.log("first");
+          return (
+            <li>
+              <a onClick={() => details(content._id)} class="card">
+                <img
+                  src={`/api/picture/download/${content.picture}`}
+                  class="card__image"
+                  alt=""
+                />
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                      <path />
+                    </svg>
+                    <img
+                      class="card__thumb"
+                      src="https://i.imgur.com/7D7I6dI.png"
+                      alt=""
+                    />
+                    <div class="card__header-text">
+                      <h3 class="card__title">{content.name}</h3>
+                      <span class="card__status">
+                        {content.genre}
+                      </span>
+                    </div>
+                  </div>
+                  <p class="card__description">
+                    {content.description}
+                  </p>
+                </div>
+              </a>
+            </li>
+          );
+      })}
+      </ul>
+    </div>
+  );
+}
 
-//     <div id="card" key={content._id}>
-      //       <li id="title">
-      //         {content.name}
-      //         <ul>
-      //           <img
-      //             src={`/api/picture/download/${content.picture}`}
-      //             alt=""
-      //             height="80px"
-      //             lengt="80px"
-      //           />
-      //         </ul>
-      //         <p>{content.description} </p>
-      //       </li>
+// <!-- div id="card" key={content._id}>
+//          <li id="title">
+//            {content.name}
+//            <ul>
+//              <img
+//                src={`/api/picture/download/${content.picture}`}
+//                alt=""
+//                height="80px"
+//                lengt="80px"
+//              />
+//            </ul>
+//            <p>{content.description} </p>
+//          </li>
 
-      //       <button
-      //         onClick={() => details(content._id)}
-      //         class="custom-btn btn-6"
-      //       >
-      //         Details
-      //       </button>
-      //       {token ? (
-      //         added.forEach((element) => {
-      //           element._id === content._id ? (
-      //             <button class="custom-btn btn-6">
-      //               <span>Deja Ajouter</span>
-      //             </button>
-      //           ) : (
-      //             <button
-      //               onClick={() => song(content._id)}
-      //               class="custom-btn btn-6"
-      //             >
-      //               <span>Ecouter plus tard</span>
-      //             </button>
-      //           );
-      //         })
-      //       ) : (
-      //         <button
-      //           onClick={() => navigate("/Connexion")}
-      //           class="custom-btn btn-6"
-      //         >
-      //           <span>Connexion</span>
-      //         </button>)}
+//          <button
+//            onClick={() => details(content._id)}
+//            class="custom-btn btn-6"
+//          >
+//            Details
+//          </button -->
+//          {token ? (
+//            added.forEach((element) => {
+//              element._id === content._id ? (
+//                <button class="custom-btn btn-6">
+//                  <span>Deja Ajouter</span>
+//                </button>
+//              ) : (
+//                <button
+//                  onClick={() => song(content._id)}
+//                  class="custom-btn btn-6"
+//                >
+//                  <span>Ecouter plus tard</span>
+//                </button>
+//              );
+//            })
+//          ) : (
+//            <button
+//              onClick={() => navigate("/Connexion")}
+//              class="custom-btn btn-6"
+//            >
+//              <span>Connexion</span>
+//            </button -->
