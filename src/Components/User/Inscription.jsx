@@ -57,9 +57,8 @@ export default function Inscription() {
         onKeyDown={handleKeyDown}
       />
       <label for="email" class="form__label">
-        Adresse Email
+        Adresse Email : exemple@exemple.com
       </label>
-      <label class="form__label">exemple : exemple@exemple.com</label>
       <input
         id="password"
         class="form__input"
@@ -70,9 +69,8 @@ export default function Inscription() {
         onKeyDown={handleKeyDown}
       />
       <label for="password" class="form__label">
-        Mot de passe
+        Mot de passe : 8 caracteres
       </label>
-      <label class="form__label">Minimum : 8 caracteres</label>
       <div class="btn-container">
         <button onClick={submitHandler}>
           <span class="text">Inscription</span>
