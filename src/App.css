@@ -29,6 +29,17 @@ body {
   color: #fff;
 }
 
+.card__audio {
+  padding: 0 2em 2em;
+  margin: 0;
+  color: #D7BDCA;
+  font-family: "MockFlowFont";   
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 /*---------------------NavBar------------------------*/
 
 .menu-bar {
