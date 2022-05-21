@@ -27,7 +27,11 @@ export default function ContentCreatorAdmin() {
 
   useEffect(() => {
     axios
-      .get("/api/content/")
+      .get("/api/content/", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => setlistAffichable(res.data))
       .catch((err) => console.log(err.response));
   }, [listAAfficher, token]);
@@ -35,42 +39,38 @@ export default function ContentCreatorAdmin() {
   return (
     <div id="container">
       <ul class="cards">
-        {listAAfficher.map(
-          (content) => {
-            if (listAffichable.includes(listAAfficher)) {
-              console.log("first");
-              return (
-                <li>
-                  <a onClick={() => updateContent(content._id)} class="card">
-                    <img
-                      src={`/api/picture/download/${content.picture}`}
-                      class="card__image"
-                      alt=""
-                    />
-                    <div class="card__overlay">
-                      <div class="card__header">
-                        <svg
-                          class="card__arc"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path />
-                        </svg>
-                        <img
-                          class="card__thumb"
-                          src="https://i.imgur.com/7D7I6dI.png"
-                          alt=""
-                        />
-                        <div class="card__header-text">
-                          <h3 class="card__title">{content.name}</h3>
-                          <span class="card__status">{content.genres}</span>
-                        </div>
+        {listAffichable.map((content) => {
+          if (listAAfficher.includes(content._id)) {
+            return (
+              <li>
+                <a onClick={() => updateContent(content._id)} class="card">
+                  <img
+                    src={`/api/picture/download/${content.picture}`}
+                    class="card__image"
+                    alt=""
+                  />
+                  <div class="card__overlay">
+                    <div class="card__header">
+                      <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                        <path />
+                      </svg>
+                      <img
+                        class="card__thumb"
+                        src="https://i.imgur.com/7D7I6dI.png"
+                        alt=""
+                      />
+                      <div class="card__header-text">
+                        <h3 class="card__title">{content.name}</h3>
+                        <span class="card__status">{content.genres}</span>
                       </div>
-                      <p class="card__description">{content.description}</p>
                     </div>
-                  </a>
-                </li>
-              );
-            }})}
+                    <p class="card__description">{content.description}</p>
+                  </div>
+                </a>
+              </li>
+            );
+          }
+        })}
       </ul>
     </div>
   );
