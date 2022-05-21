@@ -25,7 +25,7 @@ export default function ModifUser() {
       .catch((err) => console.log(err.response));
   });
 
-  const deleteContent = (id) => {
+  const deleteContent = () => {
     axios
       .delete("/api/user/" + id, {
         headers: {

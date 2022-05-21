@@ -43,6 +43,13 @@ export default function Navbar() {
               </li>
             </Link>
           ) : null}
+          {creator ? (
+            <Link style={{ textDecoration: "none" }} to="/Creator/AdminContent">
+              <li>
+                <span>Gerer Contenue</span>
+              </li>
+            </Link>
+          ) : null}
           {admin ? (
             <Link style={{ textDecoration: "none" }} to="/Admin/Content">
               <li>

@@ -14,6 +14,7 @@ import ContentId from "./Components/Content/ContentId";
 import ModifContentId from "./Components/Content/ModifContentId";
 import ProtectedRoute from "./UserCheck";
 import axios from "axios";
+import ContentCreatorAdmin from "./Components/Content/ContentCreatorAdmin";
 
 function App() {
   const [token, settoken] = useState(localStorage.getItem("token"));
@@ -82,6 +83,7 @@ function App() {
                 />
               }
             >
+              <Route path="/Creator/AdminContent" element={<ContentCreatorAdmin />} />
               <Route path="/Create" element={<AjouterContent />} />
               <Route path="/Update/:id" element={<ModifContentId />} />
             </Route>
