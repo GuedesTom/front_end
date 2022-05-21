@@ -16,7 +16,11 @@ export default function ModifUser() {
 
   useEffect(() => {
     axios
-      .get("/api/user/" + id)
+      .get("/api/user/" + id, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => setUserAAfficher(res.data))
       .catch((err) => console.log(err.response));
   });

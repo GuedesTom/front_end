@@ -15,7 +15,11 @@ export default function AdminUser() {
 
   useEffect(() => {
     axios
-      .get("/api/user/all")
+      .get("/api/user/all", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => setlistAAfficher(res.data))
       .catch((err) => console.log(err.response));
   }, [token]);
