@@ -10,4 +10,4 @@ export default function ProtectedRoute ({
   }
 
   return children ? children : <Outlet />;
-};
+}

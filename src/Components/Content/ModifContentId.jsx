@@ -11,15 +11,20 @@ export default function ModifContentId() {
   const [description, setdescription] = useState("");
   const [genres, setgenres] = useState("");
   const [pegi, setpegi] = useState("");
-  const [contentAAfficher, setcontentAAfficher] = useState({});
+  // const [contentAAfficher, setcontentAAfficher] = useState({});
   let navigate = useNavigate();
 
   useEffect(() => {
     axios
       .get("/api/content/" + id)
-      .then((res) => setcontentAAfficher(res.data))
+      .then((res) => {
+        setname(res.data.name);
+        setdescription(res.data.description);
+        setgenres(res.data.genres);
+        setpegi(res.data.pegi);
+      })
       .catch((err) => console.log(err.response));
-  });
+  },[id]);
 
   const deleteContent = (id) => {
     axios
@@ -35,33 +40,33 @@ export default function ModifContentId() {
       .catch((err) => console.log(err.response));
   };
 
-  const setParams = async setparam => {
-  if (name === "" || description === "" || genres === "" || pegi === "") {
-    if (name === "") {
-      console.log("pas de nom");
-      await setname(contentAAfficher.name);
-    }
-    if (description === "") {
-      console.log("pas de description");
-      await setdescription(contentAAfficher.description);
-    }
-    if (genres === "") {
-      console.log("pas de genres");
-      await setgenres(contentAAfficher.genres);
-    }
-    if (pegi === "") {
-      console.log("pas de pegi");
-      await setpegi(contentAAfficher.pegi);
-    }
-  }
-  submitHandler();
-  }
+  // const setParams = async setparam => {
+  // if (name === "" || description === "" || genres === "" || pegi === "") {
+  //   if (name === "") {
+  //     console.log("pas de nom");
+  //     await setname(contentAAfficher.name);
+  //   }
+  //   if (description === "") {
+  //     console.log("pas de description");
+  //     await setdescription(contentAAfficher.description);
+  //   }
+  //   if (genres === "") {
+  //     console.log("pas de genres");
+  //     await setgenres(contentAAfficher.genres);
+  //   }
+  //   if (pegi === "") {
+  //     console.log("pas de pegi");
+  //     await setpegi(contentAAfficher.pegi);
+  //   }
+  // }
+  // submitHandler();
+  // }
 
   const submitHandler = (event) => {
     const content = { name, description, genres, pegi };
     console.log(content);
     axios
-      .patch("/api/content/" + contentAAfficher._id, content, {
+      .patch("/api/content/" + id, content, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -73,62 +78,62 @@ export default function ModifContentId() {
       .catch((err) => console.log(err.response));
   };
 
-    const handleKeyDown = (event) => {
-      if (event.key === "Enter") {
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
       submitHandler();
-      }
-    };
+    }
+  };
 
   return (
     <div id="div">
+      <label for="name" class="form__label">
+        Nom
+      </label>
       <input
         id="name"
         class="form__input"
         type="text"
-        placeholder={contentAAfficher.name}
+        placeholder="Nom"
         value={name}
         onChange={(event) => setname(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="name" class="form__label">
-        {contentAAfficher.name}
+      <label for="description" class="form__label">
+        "Description"
       </label>
       <input
         id="description"
         class="form__input"
         type="text"
-        placeholder={contentAAfficher.description}
+        placeholder="Description"
         value={description}
         onChange={(event) => setdescription(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="description" class="form__label">
-        {contentAAfficher.description}
+      <label for="genres" class="form__label">
+        Genres
       </label>
       <input
         id="genres"
         class="form__input"
         type="text"
-        placeholder={contentAAfficher.genres}
+        placeholder="Genres"
         value={genres}
         onChange={(event) => setgenres(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="genres" class="form__label">
-        {contentAAfficher.genres}
+      <label for="pegi" class="form__label">
+        PEGI
       </label>
       <input
         id="pegi"
         class="form__input"
         type="number"
-        placeholder={contentAAfficher.pegi}
+        placeholder="PEGI"
         value={pegi}
         onChange={(event) => setpegi(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="pegi" class="form__label">
-        {contentAAfficher.pegi}
-      </label>
       <div class="btn-container">
         <button onClick={submitHandler}>
           <span class="text">Ajouter</span>
@@ -153,7 +158,7 @@ export default function ModifContentId() {
       </svg>
 
       <div class="btn-container">
-        <button onClick={() => deleteContent(contentAAfficher._id)}>
+        <button onClick={() => deleteContent(id)}>
           <span class="text">Supprimer</span>
           <div class="icon-container">
             <div class="icon icon--left">

@@ -26,7 +26,7 @@ export default function AdminContent() {
         {listAAfficher.map((content) => {
           console.log("first");
           return (
-            <li>
+            <li key={content._id}>
               <a onClick={() => updateContent(content._id)} class="card">
                 <img
                   src={`/api/picture/download/${content.picture}`}

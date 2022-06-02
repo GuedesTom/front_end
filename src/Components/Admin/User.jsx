@@ -30,7 +30,7 @@ export default function AdminUser() {
         {listAAfficher.map((user) => {
           console.log("first");
           return (
-            <li>
+            <li key={user._id}>
               <a onClick={() => updateUser(user._id)} class="card">
                 <img
                   src="https://thumbs.dreamstime.com/b/ic-ne-d-utilisateur-de-compte-silhouette-de-signe-d-un-homme-97283162.jpg"

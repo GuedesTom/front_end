@@ -27,9 +27,9 @@ export default function Navbar() {
     localStorage.removeItem("token");
   };
   return (
-    <nav>
+    <nav className="nav-bar">
       {token ? (
-        <ul class="menu-bar">
+        <ul className="menu-bar">
           <Link style={{ textDecoration: "none" }} to="/">
             <li>
               <span>Accueil</span>
@@ -72,7 +72,7 @@ export default function Navbar() {
           </Link>
         </ul>
       ) : (
-        <ul class="menu-bar">
+        <ul className="menu-bar">
           <Link style={{ textDecoration: "none" }} to="/">
             <li>
               <span>Accueil</span>

@@ -18,12 +18,11 @@ import ContentCreatorAdmin from "./Components/Content/ContentCreatorAdmin";
 
 function App() {
   const [token, settoken] = useState(localStorage.getItem("token"));
-  const [admin, setAdmin] = useState(false);
-  const [creator, setCreator] = useState(false);
+  const [admin, setAdmin] = useState("");
+  const [creator, setCreator] = useState("");
   let Provider = SagagaContext.Provider;
 
   if (token != null) {
-    console.log("FUCK");
     axios
       .get("/api/user", {
         headers: {
@@ -53,10 +52,7 @@ function App() {
 
             <Route
               element={
-                <ProtectedRoute
-                  redirectPath="/Inscription"
-                  isAllowed={token}
-                />
+                <ProtectedRoute redirectPath="/Inscription" isAllowed={token} />
               }
             >
               <Route path="/Contents/:id" element={<ContentId />} />
@@ -67,7 +63,7 @@ function App() {
               element={
                 <ProtectedRoute
                   redirectPath="/Inscription"
-                  isAllowed={token && admin === true}
+                  isAllowed={token && admin !== false ? true : false}
                 />
               }
             >
@@ -79,11 +75,14 @@ function App() {
               element={
                 <ProtectedRoute
                   redirectPath="/Inscription"
-                  isAllowed={token && (admin === true || creator === true)}
+                  isAllowed={token && (admin !== false || creator !== false) ? true : false}
                 />
               }
             >
-              <Route path="/Creator/AdminContent" element={<ContentCreatorAdmin />} />
+              <Route
+                path="/Creator/AdminContent"
+                element={<ContentCreatorAdmin />}
+              />
               <Route path="/Create" element={<AjouterContent />} />
               <Route path="/Update/:id" element={<ModifContentId />} />
             </Route>

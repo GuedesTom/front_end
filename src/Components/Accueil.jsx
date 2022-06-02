@@ -65,7 +65,7 @@ export default function Accueil() {
       <ul class="cards">
         {listAAfficher.map((content) => {
           return (
-            <li>
+            <li key={content._id}>
               <a onClick={() => details(content._id)} class="card">
                 <img
                   src={`/api/picture/download/${content.picture}`}

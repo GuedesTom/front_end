@@ -37,7 +37,7 @@ export default function ContentId() {
             </div>
             <audio
               class="card__audio"
-              src={`/api/song/download/${contentAAfficher.song}`}
+              src={`/api/file/download/${contentAAfficher.filename}`}
               controls
             />
           </div>
