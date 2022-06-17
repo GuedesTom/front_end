@@ -24,7 +24,7 @@ body {
   background: linear-gradient(to right, #f1e2f1, #e5cbe1, #f1e2f1);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 100vh;
   color: #fff;
 }
@@ -43,10 +43,10 @@ body {
 /*---------------------NavBar------------------------*/
 
 .nav-bar {
-  width: 100%;
+  width: auto;
   align-items: center;
   justify-content: center;
-  display: flex;
+  display: grid;
 }
 
 .menu-bar {

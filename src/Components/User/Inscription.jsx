@@ -13,7 +13,7 @@ export default function Inscription() {
   const submitHandler = (event) => {
     const user = { username, email, password };
     if (username === "" || email === "" || password === "") {
-      alert("Manque des champs!");
+      alert("Des champs sont manquant!");
     } else {
       axios
         .post("/api/user/signup", user)
@@ -23,7 +23,7 @@ export default function Inscription() {
           localStorage.setItem("token", vartoken);
           navigate("/");
         })
-        .catch((err) => alert("Veuiller verifier vos données."));
+        .catch(() => alert("Veuiller verifier vos données saisis."));
     }
   };
 
@@ -34,53 +34,53 @@ export default function Inscription() {
   };
 
   return (
-    <div class="form__group">
+    <div className="form__group">
       <input
         id="username"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder="Nom d'utilisateur"
         value={username}
         onChange={(event) => setusername(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="username" class="form__label">
+      <label htmlFor="username" className="form__label">
         Nom d'utilisateur
       </label>
       <input
         id="email"
-        class="form__input"
+        className="form__input"
         type="email"
         placeholder="Adresse Email"
         value={email}
         onChange={(event) => setemail(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="email" class="form__label">
+      <label htmlFor="email" className="form__label">
         Adresse Email : exemple@exemple.com
       </label>
       <input
         id="password"
-        class="form__input"
+        className="form__input"
         type="password"
         placeholder="Mot de passe"
         value={password}
         onChange={(event) => setpassword(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="password" class="form__label">
+      <label htmlFor="password" className="form__label">
         Mot de passe : 8 caracteres
       </label>
-      <div class="btn-container">
+      <div className="btn-container">
         <button onClick={submitHandler}>
-          <span class="text">Inscription</span>
-          <div class="icon-container">
-            <div class="icon icon--left">
+          <span className="text">Inscription</span>
+          <div className="icon-container">
+            <div className="icon icon--left">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>
             </div>
-            <div class="icon icon--right">
+            <div className="icon icon--right">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>

@@ -22,7 +22,6 @@ export default function ContentCreatorAdmin() {
         },
       })
       .then((res) => setlistAAfficher(res.data.content_create))
-      .catch((err) => console.log(err.response));
   }, [token]);
 
   useEffect(() => {
@@ -33,38 +32,40 @@ export default function ContentCreatorAdmin() {
         },
       })
       .then((res) => setlistAffichable(res.data))
-      .catch((err) => console.log(err.response));
   }, [listAAfficher, token]);
 
   return (
     <div id="container">
-      <ul class="cards">
+      <ul className="cards">
         {listAffichable.map((content) => {
           if (listAAfficher.includes(content._id)) {
             return (
-              <li>
-                <a onClick={() => updateContent(content._id)} class="card">
+              <li key={content._id}>
+                <a onClick={() => updateContent(content._id)} className="card">
                   <img
                     src={`/api/picture/download/${content.picture}`}
-                    class="card__image"
+                    className="card__image"
                     alt=""
                   />
-                  <div class="card__overlay">
-                    <div class="card__header">
-                      <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                  <div className="card__overlay">
+                    <div className="card__header">
+                      <svg
+                        className="card__arc"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <path />
                       </svg>
                       <img
-                        class="card__thumb"
+                        className="card__thumb"
                         src="https://i.imgur.com/7D7I6dI.png"
                         alt=""
                       />
-                      <div class="card__header-text">
-                        <h3 class="card__title">{content.name}</h3>
-                        <span class="card__status">{content.genres}</span>
+                      <div className="card__header-text">
+                        <h3 className="card__title">{content.name}</h3>
+                        <span className="card__status">{content.genres}</span>
                       </div>
                     </div>
-                    <p class="card__description">{content.description}</p>
+                    <p className="card__description">{content.description}</p>
                   </div>
                 </a>
               </li>

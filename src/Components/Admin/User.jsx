@@ -21,38 +21,41 @@ export default function AdminUser() {
         },
       })
       .then((res) => setlistAAfficher(res.data))
-      .catch((err) => console.log(err.response));
   }, [token]);
 
   return (
     <div id="container">
-      <ul class="cards">
+      <ul className="cards">
         {listAAfficher.map((user) => {
-          console.log("first");
           return (
             <li key={user._id}>
-              <a onClick={() => updateUser(user._id)} class="card">
+              <a onClick={() => updateUser(user._id)} className="card">
                 <img
                   src="https://thumbs.dreamstime.com/b/ic-ne-d-utilisateur-de-compte-silhouette-de-signe-d-un-homme-97283162.jpg"
-                  class="card__image"
+                  className="card__image"
                   alt=""
                 />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                <div className="card__overlay">
+                  <div className="card__header">
+                    <svg
+                      className="card__arc"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
                       <path />
                     </svg>
                     <img
-                      class="card__thumb"
+                      className="card__thumb"
                       src="https://i.imgur.com/7D7I6dI.png"
                       alt=""
                     />
-                    <div class="card__header-text">
-                      <h3 class="card__title">{user.username}</h3>
-                      <span class="card__status">Creator : {user.content_creator}</span>
+                    <div className="card__header-text">
+                      <h3 className="card__title">{user.username}</h3>
+                      <span className="card__status">
+                        Creator : {user.content_creator}
+                      </span>
                     </div>
                   </div>
-                  <p class="card__description">Admin : {user.admin}</p>
+                  <p className="card__description">Admin : {user.admin}</p>
                 </div>
               </a>
             </li>

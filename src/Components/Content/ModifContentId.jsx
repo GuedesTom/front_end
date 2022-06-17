@@ -23,8 +23,7 @@ export default function ModifContentId() {
         setgenres(res.data.genres);
         setpegi(res.data.pegi);
       })
-      .catch((err) => console.log(err.response));
-  },[id]);
+  }, [id]);
 
   const deleteContent = (id) => {
     axios
@@ -34,37 +33,12 @@ export default function ModifContentId() {
         },
       })
       .then((res) => {
-        console.log(res.data);
         navigate("/");
       })
-      .catch((err) => console.log(err.response));
   };
-
-  // const setParams = async setparam => {
-  // if (name === "" || description === "" || genres === "" || pegi === "") {
-  //   if (name === "") {
-  //     console.log("pas de nom");
-  //     await setname(contentAAfficher.name);
-  //   }
-  //   if (description === "") {
-  //     console.log("pas de description");
-  //     await setdescription(contentAAfficher.description);
-  //   }
-  //   if (genres === "") {
-  //     console.log("pas de genres");
-  //     await setgenres(contentAAfficher.genres);
-  //   }
-  //   if (pegi === "") {
-  //     console.log("pas de pegi");
-  //     await setpegi(contentAAfficher.pegi);
-  //   }
-  // }
-  // submitHandler();
-  // }
 
   const submitHandler = (event) => {
     const content = { name, description, genres, pegi };
-    console.log(content);
     axios
       .patch("/api/content/" + id, content, {
         headers: {
@@ -72,10 +46,8 @@ export default function ModifContentId() {
         },
       })
       .then((res) => {
-        console.log(res.data);
         navigate("/Admin/Content");
       })
-      .catch((err) => console.log(err.response));
   };
 
   const handleKeyDown = (event) => {
@@ -86,64 +58,64 @@ export default function ModifContentId() {
 
   return (
     <div id="div">
-      <label for="name" class="form__label">
+      <label htmlFor="name" className="form__label">
         Nom
       </label>
       <input
         id="name"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder="Nom"
         value={name}
         onChange={(event) => setname(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="description" class="form__label">
+      <label htmlFor="description" className="form__label">
         "Description"
       </label>
       <input
         id="description"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder="Description"
         value={description}
         onChange={(event) => setdescription(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="genres" class="form__label">
+      <label htmlFor="genres" className="form__label">
         Genres
       </label>
       <input
         id="genres"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder="Genres"
         value={genres}
         onChange={(event) => setgenres(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="pegi" class="form__label">
+      <label htmlFor="pegi" className="form__label">
         PEGI
       </label>
       <input
         id="pegi"
-        class="form__input"
+        className="form__input"
         type="number"
         placeholder="PEGI"
         value={pegi}
         onChange={(event) => setpegi(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <div class="btn-container">
+      <div className="btn-container">
         <button onClick={submitHandler}>
-          <span class="text">Ajouter</span>
-          <div class="icon-container">
-            <div class="icon icon--left">
+          <span className="text">Ajouter</span>
+          <div className="icon-container">
+            <div className="icon icon--left">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>
             </div>
-            <div class="icon icon--right">
+            <div className="icon icon--right">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>
@@ -157,16 +129,16 @@ export default function ModifContentId() {
         </symbol>
       </svg>
 
-      <div class="btn-container">
+      <div className="btn-container">
         <button onClick={() => deleteContent(id)}>
-          <span class="text">Supprimer</span>
-          <div class="icon-container">
-            <div class="icon icon--left">
+          <span className="text">Supprimer</span>
+          <div className="icon-container">
+            <div className="icon icon--left">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>
             </div>
-            <div class="icon icon--right">
+            <div className="icon icon--right">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>

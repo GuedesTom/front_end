@@ -32,7 +32,6 @@ export default function AddContent() {
     .then((res) => {
       setUser_Creator(res.data._id);
     })
-    .catch((err) => console.log(err.response));
 
   const submitHandler = (event) => {
     const picture = pictureSelect.name;
@@ -46,7 +45,6 @@ export default function AddContent() {
       pegi,
       user_creator,
     };
-    console.log(content);
     if (name === "" || description === "" || genres === "" || pegi === "") {
       alert("Manque des champs!");
     } else {
@@ -57,16 +55,13 @@ export default function AddContent() {
           },
         })
         .then((res) => {
-          console.log(res.data);
           navigate("/");
         })
-        .catch((err) => console.log(err.response));
     }
 
     const formDataPicture = new FormData();
 
     formDataPicture.append("picture", pictureSelect);
-    console.log(pictureSelect);
 
     axios
       .post("/api/picture", formDataPicture, {
@@ -74,17 +69,10 @@ export default function AddContent() {
           Authorization: "Bearer " + token,
         },
       })
-      .then((result) => {
-        console.log("Success:", result);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
 
     const formData = new FormData();
 
     formData.append("file", selectedFile);
-    console.log(selectedFile);
 
     axios
       .post("/api/file", formData, {
@@ -92,12 +80,6 @@ export default function AddContent() {
           Authorization: "Bearer " + token,
         },
       })
-      .then((result) => {
-        console.log("Success:", result);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
   };
 
   const handleKeyDown = (event) => {
@@ -110,84 +92,84 @@ export default function AddContent() {
     <div id="div">
       <input
         id="name"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder="Nom du contenu"
         value={name}
         onChange={(event) => setName(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="name" class="form__label">
+      <label htmlFor="name" className="form__label">
         Nom du contenu
       </label>
       <input
         id="description"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder="Description du contenu"
         value={description}
         onChange={(event) => setDescription(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="description" class="form__label">
+      <label htmlFor="description" className="form__label">
         Description du contenu
       </label>
       <input
         id="genres"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder="Genres du contenu"
         value={genres}
         onChange={(event) => setGenres(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="genres" class="form__label">
+      <label htmlFor="genres" className="form__label">
         Genres du contenu
       </label>
       <input
         id="pegi"
-        class="form__input"
+        className="form__input"
         type="number"
         placeholder="PEGI du contenu"
         value={pegi}
         onChange={(event) => setPegi(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="pegi" class="form__label">
+      <label htmlFor="pegi" className="form__label">
         PEGI du contenu
       </label>
       <input
         id="picture"
-        class="form__input"
+        className="form__input"
         type="file"
         name="picture"
         onChange={changeHandlerPicture}
         onKeyDown={handleKeyDown}
       />
-      <label for="picture" class="form__label">
+      <label htmlFor="picture" className="form__label">
         Image du contenu
       </label>
       <input
         id="video"
-        class="form__input"
+        className="form__input"
         type="file"
         name="video"
         onChange={changeHandler}
         onKeyDown={handleKeyDown}
       />
-      <label for="video" class="form__label">
+      <label htmlFor="video" className="form__label">
         Video du contenu
       </label>
-      <div class="btn-container">
+      <div className="btn-container">
         <button onClick={submitHandler}>
-          <span class="text">Ajouter</span>
-          <div class="icon-container">
-            <div class="icon icon--left">
+          <span className="text">Ajouter</span>
+          <div className="icon-container">
+            <div className="icon icon--left">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>
             </div>
-            <div class="icon icon--right">
+            <div className="icon icon--right">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>

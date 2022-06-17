@@ -9,34 +9,32 @@ export default function ContentId() {
     axios
       .get("/api/content/" + id)
       .then((res) => setcontentAAfficher(res.data))
-      .catch((err) => console.log(err.response));
   });
   return (
     <div>
       <li>
-        <a class="card">
+        <a className="card">
           <img
             src={`/api/picture/download/${contentAAfficher.picture}`}
-            class="card__image"
+            className="card__image"
             alt=""
           />
-          <div class="card__overlay">
-            <div class="card__header">
-              <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+          <div className="card__overlay">
+            <div className="card__header">
+              <svg className="card__arc" xmlns="http://www.w3.org/2000/svg">
                 <path />
               </svg>
               <img
-                class="card__thumb"
-                src="https://cdn-icons.flaticon.com/png/512/1665/premium/1665680.png?token=exp=1651931861~hmac=e2fcf4966565dba5b9ca620054b6e629"
+                className="card__thumb"
                 alt=""
               />
-              <div class="card__header-text">
-                <h3 class="card__title">{contentAAfficher.name}</h3>
-                <span class="card__status">{contentAAfficher.genres}</span>
+              <div className="card__header-text">
+                <h3 className="card__title">{contentAAfficher.name}</h3>
+                <span className="card__status">{contentAAfficher.genres}</span>
               </div>
             </div>
             <audio
-              class="card__audio"
+              className="card__audio"
               src={`/api/file/download/${contentAAfficher.filename}`}
               controls
             />

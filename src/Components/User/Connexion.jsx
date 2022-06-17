@@ -21,52 +21,51 @@ export default function Connexion() {
           localStorage.setItem("token", vartoken);
           navigate("/");
         })
-        .catch((err) => console.log(err.response));
     }
   };
 
-    const handleKeyDown = (event) => {
-      if (event.key === "Enter") {
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
       submitHandler();
-      }
-    };
+    }
+  };
 
   return (
     <div>
       <input
         id="username"
-        class="form__input"
+        className="form__input"
         type="username"
         placeholder="Nom d'Utilisateur"
         value={username}
         onChange={(event) => setusername(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="username" class="form__label">
+      <label htmlFor="username" className="form__label">
         Nom d'Utilisateur
       </label>
       <input
         id="password"
-        class="form__input"
+        className="form__input"
         type="password"
         placeholder="Mot de passe"
         value={password}
         onChange={(event) => setpassword(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="password" class="form__label">
+      <label htmlFor="password" className="form__label">
         Mot de passe
       </label>
-      <div class="btn-container">
+      <div className="btn-container">
         <button onClick={submitHandler}>
-          <span class="text">Connexion</span>
-          <div class="icon-container">
-            <div class="icon icon--left">
+          <span className="text">Connexion</span>
+          <div className="icon-container">
+            <div className="icon icon--left">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>
             </div>
-            <div class="icon icon--right">
+            <div className="icon icon--right">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>

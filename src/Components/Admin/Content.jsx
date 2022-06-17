@@ -17,38 +17,39 @@ export default function AdminContent() {
     axios
       .get("/api/content")
       .then((res) => setlistAAfficher(res.data))
-      .catch((err) => console.log(err.response));
   }, [token]);
 
   return (
     <div id="container">
-      <ul class="cards">
+      <ul className="cards">
         {listAAfficher.map((content) => {
-          console.log("first");
           return (
             <li key={content._id}>
-              <a onClick={() => updateContent(content._id)} class="card">
+              <a onClick={() => updateContent(content._id)} className="card">
                 <img
                   src={`/api/picture/download/${content.picture}`}
-                  class="card__image"
+                  className="card__image"
                   alt=""
                 />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                <div className="card__overlay">
+                  <div className="card__header">
+                    <svg
+                      className="card__arc"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
                       <path />
                     </svg>
                     <img
-                      class="card__thumb"
+                      className="card__thumb"
                       src="https://i.imgur.com/7D7I6dI.png"
                       alt=""
                     />
-                    <div class="card__header-text">
-                      <h3 class="card__title">{content.name}</h3>
-                      <span class="card__status">{content.genres}</span>
+                    <div className="card__header-text">
+                      <h3 className="card__title">{content.name}</h3>
+                      <span className="card__status">{content.genres}</span>
                     </div>
                   </div>
-                  <p class="card__description">{content.description}</p>
+                  <p className="card__description">{content.description}</p>
                 </div>
               </a>
             </li>

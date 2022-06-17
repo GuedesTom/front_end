@@ -22,7 +22,6 @@ export default function ModifUser() {
         },
       })
       .then((res) => setUserAAfficher(res.data))
-      .catch((err) => console.log(err.response));
   });
 
   const deleteContent = () => {
@@ -33,94 +32,89 @@ export default function ModifUser() {
         },
       })
       .then((res) => {
-        console.log(res.data);
         navigate("/Admin/User");
       })
-      .catch((err) => console.log(err.response));
-  }
-
-  const submitHandler = (event) => {
-    const content = { name, description, genre, pegi };
-    console.log(content);
-      axios
-        .post("/api/user", content, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          navigate("/");
-        })
-        .catch((err) => console.log(err.response));
   };
 
-    const handleKeyDown = (event) => {
-      if (event.key === "Enter") {
+  const submitHandler = () => {
+    const content = { name, description, genre, pegi };
+    axios
+      .post("/api/user", content, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        navigate("/");
+      })
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
       submitHandler();
-      }
-    };
+    }
+  };
 
   return (
     <div id="div">
       <input
         id="name"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder={userAAfficher.name}
         value={name}
         onChange={(event) => setname(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="name" class="form__label">
+      <label htmlFor="name" className="form__label">
         {userAAfficher.name}
       </label>
       <input
         id="description"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder={userAAfficher.description}
         value={description}
         onChange={(event) => setdescription(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="description" class="form__label">
+      <label htmlFor="description" className="form__label">
         {userAAfficher.description}
       </label>
       <input
         id="genre"
-        class="form__input"
+        className="form__input"
         type="text"
         placeholder={userAAfficher.genre}
         value={genre}
         onChange={(event) => setgenre(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="genre" class="form__label">
+      <label htmlFor="genre" className="form__label">
         {userAAfficher.genre}
       </label>
       <input
         id="pegi"
-        class="form__input"
+        className="form__input"
         type="number"
         placeholder={userAAfficher.pegi}
         value={pegi}
         onChange={(event) => setpegi(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <label for="pegi" class="form__label">
+      <label htmlFor="pegi" className="form__label">
         {userAAfficher.pegi}
       </label>
-      <div class="btn-container">
+      <div className="btn-container">
         <button onClick={submitHandler}>
-          <span class="text">Ajouter</span>
-          <div class="icon-container">
-            <div class="icon icon--left">
+          <span className="text">Ajouter</span>
+          <div className="icon-container">
+            <div className="icon icon--left">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>
             </div>
-            <div class="icon icon--right">
+            <div className="icon icon--right">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>
@@ -134,16 +128,16 @@ export default function ModifUser() {
         </symbol>
       </svg>
 
-      <div class="btn-container">
+      <div className="btn-container">
         <button onClick={() => deleteContent(userAAfficher._id)}>
-          <span class="text">Supprimer</span>
-          <div class="icon-container">
-            <div class="icon icon--left">
+          <span className="text">Supprimer</span>
+          <div className="icon-container">
+            <div className="icon icon--left">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>
             </div>
-            <div class="icon icon--right">
+            <div className="icon icon--right">
               <svg>
                 <use xlinkHref="#arrow-right"></use>
               </svg>

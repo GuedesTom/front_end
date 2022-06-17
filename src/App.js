@@ -33,14 +33,8 @@ function App() {
         setCreator(res.data.content_creator);
         setAdmin(res.data.admin);
       })
-      .catch((err) => console.log(err.response));
   }
-  // if (creator === "" || admin === "") {
-  //   // eslint-disable-next-line no-unused-expressions
-  //   token? (requete()) : (setAdmin(false), setCreator(false));
-  // }
   return (
-    console.log(admin + " " + creator),
     (
       <Router>
         <Provider value={{ token, settoken, admin, creator }}>

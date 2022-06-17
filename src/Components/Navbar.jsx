@@ -19,10 +19,9 @@ export default function Navbar() {
           setCreator(res.data.content_creator);
           setAdmin(res.data.admin);
         })
-        .catch((err) => console.log(err.response))
-    : console.log("Pensez a vous connectez");
+    : console.log();
 
-  const deconnexion = (event) => {
+  const deconnexion = () => {
     settoken("");
     localStorage.removeItem("token");
   };
